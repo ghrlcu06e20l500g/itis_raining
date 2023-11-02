@@ -1,0 +1,25 @@
+img
+    image-rendering: pixelated
+
+body
+    display: flex
+    flex-direction: column
+    font-family: sans-serif
+    div
+        display: flex
+        flex-direction: row
+        margin: 5px
+    #header
+        background-color: lavender
+    #day_cards
+        background-color: yellow
+        overflow: hidden
+        div
+            flex-direction: column
+            background-color: orange
+            &:hover
+                font-size: 125%
+    #date_selector
+        align-items: center
+        flex-direction: column
+        background-color: gray

@@ -1,0 +1,35 @@
+img {
+  image-rendering: pixelated;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+body div {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}
+body #header {
+  background-color: lavender;
+}
+body #day_cards {
+  background-color: yellow;
+  overflow: hidden;
+}
+body #day_cards div {
+  flex-direction: column;
+  background-color: orange;
+}
+body #day_cards div:hover {
+  font-size: 125%;
+}
+body #date_selector {
+  align-items: center;
+  flex-direction: column;
+  background-color: gray;
+}
+
+/*# sourceMappingURL=index.css.map */
