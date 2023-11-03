@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getData(ev)
 {
-    const url = new URL("https://random-data-api.com/api/v2/beers");
+    const url = new URL("");
     let params = new URLSearchParams();
     params.set('size', 10);
     params.set("response_type", "json");
@@ -30,11 +30,11 @@ function getData(ev)
 
 function writeText(resultText) {
     let main = document.querySelector("#test")
-    main.innerHTML = resultText.map(({brand, id}) => {
+    main.innerHTML = resultText.map(({medie}) => {
         return '\
-            <div class="'+id+'">                            \
-                <h3>'+brand+'</h3>                          \
-            </div>                                          \
+            <div class="'+medie+'">                             \
+                <h3></h3>                                       \
+            </div>                                              \
         ';
     })
     .join('');
