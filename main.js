@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getData(ev)
 {
-    const url = new URL("");
+    const url = new URL("10.25.0.9:3000/medie");
     let params = new URLSearchParams();
     params.set('size', 10);
     params.set("response_type", "json");
