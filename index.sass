@@ -11,17 +11,21 @@ body
         margin: 5px
     #header
         background-color: lavender
-    #day_cards
-        background-color: yellow
-        overflow: hidden
-        div
+    #content
+        #day_selection
             flex-direction: column
-            background-color: orange
-            &:hover
-                font-size: 125%
-    #date_selector
-        align-items: center
-        flex-direction: column
-        background-color: gray
-    canvas
-        background-color: red
+            #day_cards
+                flex-direction: row
+                background-color: yellow
+                overflow: hidden
+                div
+                    flex-direction: column
+                    background-color: orange
+                    &:hover
+                        font-size: 125%
+            #day_selector
+                flex-direction: row
+                align-items: center
+                background-color: gray
+        canvas
+            background-color: red
