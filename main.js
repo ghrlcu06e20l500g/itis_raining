@@ -28,14 +28,7 @@ function getData(ev)
         .catch(console.warn)
 }
 
-function writeText(resultText) {
-    let main = document.querySelector("#test")
-    main.innerHTML = resultText.map(({medie}) => {
-        return '\
-            <div class="'+medie+'">                             \
-                <h3></h3>                                       \
-            </div>                                              \
-        ';
-    })
-    .join('');
+function writeText(resArr) {
+    let main = document.querySelector("#test");
+    main.innerHTML = "<h3>"+resArr[120000]["data_ora"]+"</h3>";
 }
