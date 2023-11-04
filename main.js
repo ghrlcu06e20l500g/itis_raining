@@ -11,12 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getData(ev)
 {
-    const url = new URL("10.25.0.9:3000/medie");
-    let params = new URLSearchParams();
-    params.set('size', 10);
-    params.set("response_type", "json");
-    url.search = params;
-
+    const url = new URL("10.25.0.14:3000/misurazioni?data_ora");
     fetch(url)
         .then(response =>
         {
