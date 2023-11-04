@@ -30,5 +30,5 @@ function getData(ev)
 
 function writeText(resArr) {
     let main = document.querySelector("#test");
-    main.innerHTML = "<h3>"+resArr[120000]["data_ora"]+"</h3>";
+    main.innerHTML = '<h3>'+resArr[120000]["data_ora"]+'</h3>';
 }
