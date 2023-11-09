@@ -1,31 +1,105 @@
+.menu
+    button
+        border-style: none
+        padding: 5px
+        &.active
+            background-color: gray
+.text_div
+    vertical-align: middle
+    padding: 5px
+    font-family: sans-serif
+    user-select: none
+    div, a
+        @extend .text_div
+
+
+
 img
     image-rendering: pixelated
-
+    pointer-events: none
+*:not(body)
+    margin: 5px
 body
     display: flex
     flex-direction: column
-    font-family: sans-serif
-    div
+    margin: -5px
+    background-color: yellow
+    min-height: 100vh
+    div 
         display: flex
         flex-direction: row
-        margin: 5px
-    #header
-        background-color: lavender
-    #content
-        #day_selection
-            flex-direction: column
-            #day_cards
-                flex-direction: row
-                background-color: yellow
-                overflow: hidden
-                div
-                    flex-direction: column
-                    background-color: orange
-                    &:hover
-                        font-size: 125%
-            #day_selector
-                flex-direction: row
-                align-items: center
-                background-color: gray
-        canvas
+    #header 
+        background-color: purple
+        #title
+            background-color: green
+            flex: 1
+            font-weight: bold
+            font-size: 120%
+        #degree_menu
+            background-color: pink
+        #language_menu
             background-color: red
+    #content
+        flex: 1
+        background-color: white
+        #day_selection
+            background-color: pink
+            display: flex
+            flex-direction: column
+            flex: 0.70
+            #day_list
+                background-color: purple
+                div
+                    background-image: url("images/clouds.png")
+                    background-size: cover
+                    background-clip: content-box
+                    border-radius: 10px
+                    display: flex
+                    flex: 1
+                    flex-direction: column
+                    div
+                        background-image: none
+                        background-color: gray
+                    &:not(& > *)
+                        &:hover
+                            font-size: 120%
+                background-color: green
+                justify-content: center
+                align-items: center
+                form
+                    input
+                        background-color: gray
+                        border-style: none
+                        padding: 5px
+                        border-radius: 5px
+        #graphs
+            display: flex
+            flex-direction: column
+            flex: 0.30
+            background-color: gray
+            #gaphs_control
+                display: flex
+                flex-direction: row
+    #footer
+        background-color: brown
+        #copyright
+            background-color: purple
+            flex: 1
+        #credits
+            background-color: coral
+
+
+@media (max-width: 768px)
+    #content
+        flex-direction: column
+        #day_selection
+            flex: 1
+            #day_list
+                flex-direction: column
+                div
+                    flex-direction: row
+                    img
+                        width: 50px
+                        height: 50px
+        #graphs
+            flex: 1

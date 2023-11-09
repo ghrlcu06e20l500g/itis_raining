@@ -1,35 +1,133 @@
+.menu button {
+  border-style: none;
+  padding: 5px;
+}
+.menu button.active {
+  background-color: gray;
+}
+
+.text_div, .text_div div, .text_div a {
+  vertical-align: middle;
+  padding: 5px;
+  font-family: sans-serif;
+  user-select: none;
+}
 img {
   image-rendering: pixelated;
+  pointer-events: none;
+}
+
+*:not(body) {
+  margin: 5px;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  font-family: sans-serif;
+  margin: -5px;
+  background-color: yellow;
+  min-height: 100vh;
 }
 body div {
   display: flex;
   flex-direction: row;
-  margin: 5px;
 }
 body #header {
-  background-color: lavender;
+  background-color: purple;
 }
-body #day_cards {
-  background-color: yellow;
-  overflow: hidden;
+body #header #title {
+  background-color: green;
+  flex: 1;
+  font-weight: bold;
+  font-size: 120%;
 }
-body #day_cards div {
+body #header #degree_menu {
+  background-color: pink;
+}
+body #header #language_menu {
+  background-color: red;
+}
+body #content {
+  flex: 1;
+  background-color: white;
+}
+body #content #day_selection {
+  background-color: pink;
+  display: flex;
   flex-direction: column;
-  background-color: orange;
+  flex: 0.7;
 }
-body #day_cards div:hover {
-  font-size: 125%;
+body #content #day_selection #day_list {
+  background-color: purple;
 }
-body #date_selector {
-  align-items: center;
+body #content #day_selection #day_list div {
+  background-image: url("images/clouds.png");
+  background-size: cover;
+  background-clip: content-box;
+  border-radius: 10px;
+  display: flex;
+  flex: 1;
   flex-direction: column;
+}
+body #content #day_selection #day_list div div {
+  background-image: none;
   background-color: gray;
+}
+body #content #day_selection #day_list div:not(body #content #day_selection #day_list div > *):hover {
+  font-size: 120%;
+}
+body #content #day_selection #day_selector {
+  background-color: green;
+  justify-content: center;
+  align-items: center;
+}
+body #content #day_selection #day_selector form input {
+  background-color: gray;
+  border-style: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+body #content #graphs {
+  display: flex;
+  flex-direction: column;
+  flex: 0.3;
+  background-color: gray;
+}
+body #content #graphs #gaphs_control {
+  display: flex;
+  flex-direction: row;
+}
+body #footer {
+  background-color: brown;
+}
+body #footer #copyright {
+  background-color: purple;
+  flex: 1;
+}
+body #footer #credits {
+  background-color: coral;
+}
+
+@media (max-width: 768px) {
+  #content {
+    flex-direction: column;
+  }
+  #content #day_selection {
+    flex: 1;
+  }
+  #content #day_selection #day_list {
+    flex-direction: column;
+  }
+  #content #day_selection #day_list div {
+    flex-direction: row;
+  }
+  #content #day_selection #day_list div img {
+    width: 50px;
+    height: 50px;
+  }
+  #content #graphs {
+    flex: 1;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

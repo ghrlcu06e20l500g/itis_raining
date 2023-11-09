@@ -6,20 +6,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="index.css">
-        <link rel="icon" type="image/x-icon" href="images/logo.png">
         <title>ITIS RAINING</title>
     </head>
     <body>
         <div id="header">
-            <img src="logo.png">
-            <div id="title">ITIS RAINING</div>
-            <div id="clock">00:00</div>
-            <div id="temperature_type">C/F/K</div>
-            <div id="language">ENG/ITA</div>
+            <img src="images/logo.png">
+            <div id="title" class="text_div">ITIS RAINING</div>
+            <div id="degree_menu" class="menu">
+                <button class="active">C</button>
+                <button>F</button>
+                <button>K</button>
+            </div>
+            <div id="language_menu" class="menu">
+                <button class="active">ENG</button>
+                <button>ITA</button>
+            </div>
         </div>
         <div id="content">
             <div id="day_selection">
-                <div id="day_cards">
+                <div id="day_list">
                     <div></div>
                     <div></div>
                     <div></div>
@@ -29,18 +34,31 @@
                     <div></div>
                 </div>
                 <div id="day_selector">
-                    View date
-                    <form><input type="date"></form>
+                    <div class="text_div" data-ENG="Week of" data-ITA="Settimana del"></div>
+                    <form>
+                        <input type="date">
+                    </form>
                 </div>
             </div>
-            <canvas></canvas>
+            <div id="graphs">
+                <div class="menu" id="graphs_control">
+                    <button class="active" data-ENG="Day" data-ITA="Giorno"></button>
+                    <button data-ENG="Week" data-ITA="Settimana"></button>
+                </div>
+                <canvas id="temperature"></canvas>
+                <canvas id="humidity"></canvas>
+            </div>
         </div>
-        <!--Div di test LASCIARE PLS-->
-        <div id="test">
-    
+        <div id="footer">
+            <div id="copyright" class="text_div">ITIS E.MATTEI URBINO 2023/2024</div>
+            <div id="credits" class="text_div"
+                data-ENG="Made by <a href='duckduckgo.com'>***</a> and <a href='duckduckgo.com'>***</a>."
+                data-ITA="Progettato da <a href='duckduckgo.com'>***</a> e <a href='duckduckgo.com'>***</a>."
+            ></div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="index.js"></script>
     </body>
 </html>
