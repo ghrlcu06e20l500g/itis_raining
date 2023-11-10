@@ -9,9 +9,10 @@ function get_week_data(date) {
 }
 
 
-selected_week = [];
 document.addEventListener("DOMContentLoaded", function() {
     // selected_week
+        selected_week = [];
+        
         function update_selected_week(date) {
            let dayOfWeek = date.getDay();
         
