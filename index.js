@@ -8,7 +8,26 @@ function get_week_data(date) {
 
 }
 
+
+selected_week = new Array(7);
 document.addEventListener("DOMContentLoaded", function() {
+    // selected_week
+        function update_selected_week(date) {
+           let dayOfWeek = date.getDay();
+        
+           for(let i = 0; i < 7; i++) {
+               let newDate = new Date(date);
+               newDate.setDate(date.getDate() - dayOfWeek + i);
+               selected_week.push(newDate);
+           }
+        }
+    
+        #("#day_selector form input").on("change", function() {
+            update_selected_week(#(this).value);
+            update_day_lists();
+            update_charts();
+        });
+        update_seleced_week(new Date));
     // #charts
         temperature_chart = new Chart($("#temperature").get(0).getContext("2d"), {
             type: "line",
@@ -82,8 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 default:
                     break;
             }
-            if($("chart_menu").value == "day") get_day_data();
-            else get_week_data();
+            if($("#chart_menu").value == "day") get_day_data(selected_week[0]);
+            else get_week_data(selected_week);
             temperature_chart.data.datasets[0].data = temperature_data;
             humidity_chart.data.datasets[0].data = humidity_data;
 
@@ -94,13 +113,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         $("#chart_menu").on("change", update_charts);
 
+        
     // #day_selection
         function update_day_list() {
             for(let i = 0; i < 7; i++) {
                 $(`#day_list :nth-child(${i})`).html(/* html */ `
                     <div class="text_div"
-                        data-eng = "${new Date().toString()} Sunday"
-                        data-ita = "${new Date().toString()} Domenica"
+                        data-eng = "${selected_week[i].toString()} Sunday"
+                        data-ita = "${selected_week[i].toString()} Domenica"
                     >
                     <img src="images/sunny.png">
                     <div class="text_div">30°${$("#degree_menu").value} 50%RH</div>
@@ -112,6 +132,8 @@ document.addEventListener("DOMContentLoaded", function() {
             update_charts();
         });
         update_day_list();
+
+        
 
     // #language_menu
         function update_language() {
