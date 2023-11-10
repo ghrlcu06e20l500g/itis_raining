@@ -12,15 +12,15 @@
         <div id="header">
             <img src="images/logo.png">
             <div id="title" class="text_div">ITIS RAINING</div>
-            <div id="degree_menu" class="menu">
-                <button class="active">C</button>
-                <button>F</button>
-                <button>K</button>
-            </div>
-            <div id="language_menu" class="menu">
-                <button class="active">ENG</button>
-                <button>ITA</button>
-            </div>
+            <select id="degree_menu">
+                <option value="C">C</option>
+                <option value="F">F</option>
+                <option value="K">K</option>
+            </select>
+            <select id="language_menu">
+                <option value="ENG">ENG</option>
+                <option value="ITA">ITA</option>
+            </select>
         </div>
         <div id="content">
             <div id="day_selection">
@@ -41,10 +41,10 @@
                 </div>
             </div>
             <div id="graphs">
-                <div class="menu" id="graphs_control">
-                    <button class="active" data-ENG="Day" data-ITA="Giorno"></button>
-                    <button data-ENG="Week" data-ITA="Settimana"></button>
-                </div>
+                <select id="graphs_menu">
+                    <option value="day" data-ENG="Day" data-ITA="Giorno"></option>
+                    <option value="week" data-ENG="Week" data-ITA="Settimana"></option>
+                </select>
                 <canvas id="temperature"></canvas>
                 <canvas id="humidity"></canvas>
             </div>
