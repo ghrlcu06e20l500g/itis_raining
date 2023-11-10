@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 default:
                     break;
             }
-            if($("#chart_menu").value == "day") get_day_data(selected_week[0]);
+            if($("#chart_menu").value == "day") get_day_data(selected_week[0]);    // DEBUG
             else get_week_data(selected_week);
             temperature_chart.data.datasets[0].data = temperature_data;
             humidity_chart.data.datasets[0].data = humidity_data;
@@ -110,9 +110,8 @@ document.addEventListener("DOMContentLoaded", function() {
             humidity_chart.update();
         }
         update_charts();
-
+    
         $("#chart_menu").on("change", update_charts);
-
         
     // #day_selection
         function update_day_list() {
@@ -132,8 +131,6 @@ document.addEventListener("DOMContentLoaded", function() {
             update_charts();
         });
         update_day_list();
-
-        
 
     // #language_menu
         function update_language() {
