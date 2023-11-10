@@ -1,29 +1,22 @@
+temperature_data = []
+humidity_data = []
+
+function get_day_data(date) {
+
+}
+function get_week_data(date) {
+
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-    // .menu
-        $(".menu").each(function() {
-            $(this).data("active", $(this).find("button.active").text());
-        });
-        $(".menu button").click(function() {
-            $(this).closest(".menu").find("button").removeClass("active");
-            $(this).addClass("active");
-
-            $(this).closest(".menu").data("active", $(this).text());
-            $(this).closest(".menu").trigger("change");
-        });
-
     // #charts
-        let day = new Array(24);
-        day.fill({
-            "temperature": 30,
-            "humidity": 0.5
-        });
-        let temperature_chart = new Chart($("#temperature").get(0).getContext("2d"), {
+        temperature_chart = new Chart($("#temperature").get(0).getContext("2d"), {
             type: "line",
             data: {
                 labels: Array.from({length: 24}, (_, i) => `${i + 1}:00`),
                 datasets: [{
                     label: "",
-                    data: Array.from({length: 24}, (_, i) => day[i]["temperature"]),
+                    data: temperature_data,
                     backgroundColor: "orange",
                     borderColor: "red",
                     borderWidth: 2,
@@ -42,13 +35,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         }); 
-        let humidity_chart = new Chart($("#humidity").get(0).getContext("2d"), {
+        humidity_chart = new Chart($("#humidity").get(0).getContext("2d"), {
             type: "line",
             data: {
                 labels: Array.from({length: 24}, (_, i) => `${i + 1}:00`),
                 datasets: [{
                     label: "",
-                    data: Array.from({length: 24}, (_, i) => day[i]["temperature"]),
+                    data: humidity_data,
                     backgroundColor: "rgb(135, 206, 250)",
                     borderColor: "blue", 
                     borderWidth: 2,
@@ -67,11 +60,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         });
-        function update_graphs() {
-            temperature_chart.data.datasets[0].label = 
-                `${($("#language_menu").data("active") == "ENG")? "Temperature": "Temperatura"} (°${$("#degree_menu").data("active")})`
-            ;
-            switch ($("#degree_menu").data("active")) {
+        function update_charts() {
+            temperature_chart.data.datasets[0].label = `${($("#language_menu").value == "eng")? "Humidity": "Umidità"} (${$("#degree_menu").value}°)`;
+            humidity_chart.data.datasets[0].label = `${($("#language_menu").value == "eng")? "Humidity": "Umidità"} (%RH)`;
+            switch($("#degree_menu").value) {
                 case "C":
                     temperature_chart.data.datasets[0].data = Array.from({length: 24}, (_, i) => day[i]["temperature"]);
                     temperature_chart.options.scales.y.suggestedMin = -20;
@@ -90,38 +82,45 @@ document.addEventListener("DOMContentLoaded", function() {
                 default:
                     break;
             }
+            if($("chart_menu").value == "day") get_day_data();
+            else get_week_data();
+            temperature_chart.data.datasets[0].data = temperature_data;
+            humidity_chart.data.datasets[0].data = humidity_data;
+
             temperature_chart.update();
-            humidity_chart.data.datasets[0].label = `${($("#language_menu").data("active") == "ENG")? "Humidity": "Umidità"} (%RH)`;
             humidity_chart.update();
         }
-        update_graphs();
+        update_charts();
+
+        $("#chart_menu").on("change", update_charts);
 
     // #day_selection
         function update_day_list() {
-            $("#day_list *").each(function() {
-                $(this).html(/* html */ `
+            for(let i = 0; i < 7; i++) {
+                $(`#day_list :nth-child(${i})`).html(/* html */ `
                     <div class="text_div"
-                        data-ENG="05 / 10 / 2023 <br> Sunday"
-                        data-ITA="05 / 10 / 2023 <br> Domenica"
+                        data-eng = "${new Date().toString()} Sunday"
+                        data-ita = "${new Date().toString()} Domenica"
                     >
                     <img src="images/sunny.png">
-                    <div class="text_div">30°${$("#degree_menu").data("active")} 50%RH</div>
+                    <div class="text_div">30°${$("#degree_menu").value} 50%RH</div>
                 `);
-            });
+            }
         }
         $("#degree_menu").on("change", function() {
             update_day_list();
-            update_graphs();
+            update_charts();
         });
         update_day_list();
 
     // #language_menu
         function update_language() {
-            $(`div[data-${$("#language_menu").data("active")}]`).each(function() {
-                $(this).html($(this).data($("#language_menu").data("active")));
+            $(`div[data-${$("#language_menu").value}]`).each(function() {
+                $(this).html($(this).data($("#language_menu").value));
             });
-            update_graphs();
+            update_charts();
         }
         $("#language_menu").on("change", update_language);
         update_language();
 });
+
