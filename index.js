@@ -1,5 +1,5 @@
-temperature_data = []
-humidity_data = []
+temperature_data = [];
+humidity_data = [];
 
 function get_day_data(date) {
 
@@ -9,7 +9,7 @@ function get_week_data(date) {
 }
 
 
-selected_week = new Array(7);
+selected_week = [];
 document.addEventListener("DOMContentLoaded", function() {
     // selected_week
         function update_selected_week(date) {
