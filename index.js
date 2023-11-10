@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
            }
         }
     
-        #("#day_selector form input").on("change", function() {
-            update_selected_week(#(this).value);
+        $("#day_selector form input").on("change", function() {
+            update_selected_week($(this).value);
             update_day_lists();
             update_charts();
         });
@@ -143,4 +143,3 @@ document.addEventListener("DOMContentLoaded", function() {
         $("#language_menu").on("change", update_language);
         update_language();
 });
-
