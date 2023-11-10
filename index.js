@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             update_day_lists();
             update_charts();
         });
-        update_seleced_week(new Date));
+        update_seleced_week(new Date);
     // #charts
         temperature_chart = new Chart($("#temperature").get(0).getContext("2d"), {
             type: "line",
