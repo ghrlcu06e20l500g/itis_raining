@@ -6,55 +6,48 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="icon" type="image/icon" href="images/logo.png">
         <title>ITIS RAINING</title>
     </head>
     <body>
-        <div id="header">
+        <div id="loading_screen">
+            <img src="images/loading.gif">
+            <div>Loading...</div>
+        </div>
+
+        <header>
             <img src="images/logo.png">
-            <div id="title" class="text_div">ITIS RAINING</div>
-            <select id="degree_menu">
-                <option value="C">C</option>
-                <option value="F">F</option>
-                <option value="K">K</option>
-            </select>
-            <select id="language_menu">
-                <option value="ENG">ENG</option>
-                <option value="ITA">ITA</option>
-            </select>
-        </div>
-        <div id="content">
-            <div id="day_selection">
-                <div id="day_list">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <div id="day_selector">
-                    <div class="text_div" data-ENG="Week of" data-ITA="Settimana del"></div>
-                    <form>
-                        <input type="date">
-                    </form>
-                </div>
+            <h1>ITIS RAINING</h1>
+            <input type="date" id="date">
+            <button id="settings_button">
+                <img src="images/settings.png">
+            </button>
+        </header>
+        <nav>
+            <div id="nav_week" class="selected">Week</div>
+            <div id="nav_day">Day</div>
+        </nav>
+        <main>
+
+        </main>
+        <footer>
+            Hello
+        </footer>
+
+        <div id="settings">
+            <div id="settings_header">
+                <div id="settings_title">Settings</div>
+                <button id="settings_close_button">X</button>
             </div>
-            <div id="charts">
-                <select id="charts_menu">
-                    <option value="day" data-ENG="Day" data-ITA="Giorno"></option>
-                    <option value="week" data-ENG="Week" data-ITA="Settimana"></option>
-                </select>
-                <canvas id="temperature"></canvas>
-                <canvas id="humidity"></canvas>
-            </div>
-        </div>
-        <div id="footer">
-            <div id="copyright" class="text_div">ITIS E.MATTEI URBINO 2023/2024</div>
-            <div id="credits" class="text_div"
-                data-ENG="Made by <a href='duckduckgo.com'>***</a> and <a href='duckduckgo.com'>***</a>."
-                data-ITA="Progettato da <a href='duckduckgo.com'>***</a> e <a href='duckduckgo.com'>***</a>."
-            ></div>
+            <select id="langauge_select">
+                <option>ENG</option>
+                <option>ITA</option>
+            </select>
+            <select id="degree_select">
+                <option>C</option>
+                <option>F</option>
+                <option>K</option>
+            </select>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

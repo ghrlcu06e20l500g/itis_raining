@@ -1,133 +1,93 @@
-.menu button {
-  border-style: none;
-  padding: 5px;
-}
-.menu button.active {
-  background-color: gray;
-}
-
-.text_div, .text_div div, .text_div a {
-  vertical-align: middle;
-  padding: 5px;
-  font-family: sans-serif;
-  user-select: none;
-}
-img {
-  image-rendering: pixelated;
-  pointer-events: none;
-}
-
-*:not(body) {
-  margin: 5px;
-}
-
 body {
-  display: flex;
-  flex-direction: column;
-  margin: -5px;
-  background-color: yellow;
-  min-height: 100vh;
-}
-body div {
-  display: flex;
-  flex-direction: row;
-}
-body #header {
-  background-color: purple;
-}
-body #header #title {
-  background-color: green;
-  flex: 1;
-  font-weight: bold;
-  font-size: 120%;
-}
-body #header #degree_menu {
-  background-color: pink;
-}
-body #header #language_menu {
-  background-color: red;
-}
-body #content {
-  flex: 1;
-  background-color: white;
-}
-body #content #day_selection {
-  background-color: pink;
-  display: flex;
-  flex-direction: column;
-  flex: 0.7;
-}
-body #content #day_selection #day_list {
-  background-color: purple;
-}
-body #content #day_selection #day_list div {
-  background-image: url("images/clouds.png");
-  background-size: cover;
-  background-clip: content-box;
-  border-radius: 10px;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
-body #content #day_selection #day_list div div {
-  background-image: none;
-  background-color: gray;
-}
-body #content #day_selection #day_list div:not(body #content #day_selection #day_list div > *):hover {
-  font-size: 120%;
-}
-body #content #day_selection #day_selector {
-  background-color: green;
-  justify-content: center;
-  align-items: center;
-}
-body #content #day_selection #day_selector form input {
-  background-color: gray;
-  border-style: none;
-  padding: 5px;
-  border-radius: 5px;
-}
-body #content #graphs {
-  display: flex;
-  flex-direction: column;
-  flex: 0.3;
-  background-color: gray;
-}
-body #content #graphs #gaphs_control {
-  display: flex;
-  flex-direction: row;
-}
-body #footer {
-  background-color: brown;
-}
-body #footer #copyright {
-  background-color: purple;
-  flex: 1;
-}
-body #footer #credits {
-  background-color: coral;
-}
-
-@media (max-width: 768px) {
-  #content {
+    display: flex;
     flex-direction: column;
-  }
-  #content #day_selection {
-    flex: 1;
-  }
-  #content #day_selection #day_list {
-    flex-direction: column;
-  }
-  #content #day_selection #day_list div {
-    flex-direction: row;
-  }
-  #content #day_selection #day_list div img {
-    width: 50px;
-    height: 50px;
-  }
-  #content #graphs {
-    flex: 1;
-  }
+    margin: 0px;
+    min-height: 100vh;
+    font-family: sans-serif;
 }
-
-/*# sourceMappingURL=index.css.map */
+    header {
+        display: flex;
+        flex-direction: row;
+        background-color: red;
+    }
+        header img {
+            image-rendering: pixelated;
+        }
+        h1 {
+            flex: 1;
+        }
+        #date {
+            flex: 1;
+            border: none;
+        }
+        #settings_button {
+            border: none;     
+        }
+    nav {
+        display: flex;
+        flex-direction: row;
+        background-color: gray;
+    }
+        nav div {
+            flex: 1;
+            text-align: center;
+        }
+            nav div.selected {
+                border-bottom: solid 5px red;
+            }
+            nav div a:hover {
+                font-weight: bold;
+            }
+    main {
+        flex: 1;
+    }
+        #days {
+            display: flex;
+            flex-direction: row;
+            background-color: orange;
+        }
+        #days div {
+            flex: 1;
+        }
+    footer {
+        background-color: green;
+    }
+    #settings {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+    }   
+        #settings * {
+            padding: 5px;
+        }
+        #settings_header {
+            display: flex;
+            flex-direction: row;
+        }
+            #settings_title {
+                flex: 1;
+            }
+    #loading_screen {
+        position: absolute;
+        background-color: gray;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }   
+        #loading_screen * {
+            padding: 5px;
+        }
+        #loading_screen img {
+            width: 200px;
+            height: 200px;
+        }
