@@ -14,44 +14,47 @@
             <img src="images/loading.gif">
             <div>Loading...</div>
         </div>
-
         <header>
             <img src="images/logo.png">
             <h1>ITIS RAINING</h1>
-            <input type="date" id="date">
             <button id="settings_button">
                 <img src="images/settings.png">
             </button>
         </header>
         <nav>
-            <div id="nav_week" class="selected">Week</div>
-            <div id="nav_day">Day</div>
+            <div id="nav_week" class="selected" title = "Click to view week">Week</div>
+            <div id="nav_day" title = "Click to view day">Day</div>
         </nav>
-        <main>
-
-        </main>
+        <main></main>
         <footer>
             Hello
         </footer>
-
         <div id="settings">
             <div id="settings_header">
                 <div id="settings_title">Settings</div>
                 <button id="settings_close_button">X</button>
             </div>
+            <div>Language</div>
             <select id="langauge_select">
                 <option>ENG</option>
                 <option>ITA</option>
             </select>
+            <div>Degree unit</div>
             <select id="degree_select">
                 <option>C</option>
                 <option>F</option>
                 <option>K</option>
             </select>
+            <div>First week day</div>
+            <select id="first_day">
+                <option>Monday</option>
+                <option>Sunday</option>
+            </select>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="data.js"></script>
         <script src="index.js"></script>
     </body>
 </html>

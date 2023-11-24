@@ -10,15 +10,14 @@ body {
         flex-direction: row;
         background-color: red;
     }
+        header > * {
+            padding: 5px;
+        }
         header img {
             image-rendering: pixelated;
         }
         h1 {
             flex: 1;
-        }
-        #date {
-            flex: 1;
-            border: none;
         }
         #settings_button {
             border: none;     
@@ -31,12 +30,11 @@ body {
         nav div {
             flex: 1;
             text-align: center;
+            cursor: pointer;
+            transition: border-bottom 0.1s;
         }
-            nav div.selected {
+            nav > div.selected {
                 border-bottom: solid 5px red;
-            }
-            nav div a:hover {
-                font-weight: bold;
             }
     main {
         flex: 1;
@@ -44,10 +42,34 @@ body {
         #days {
             display: flex;
             flex-direction: row;
-            background-color: orange;
+            margin-right: 5px;
         }
-        #days div {
+            #days > div {
+                flex: 1;
+                margin: 5px 0px 5px 5px;
+                border-radius: 5px;
+                min-height: 300px;
+                padding: 5px;
+                background-image: url("images/backgrounds/cloudy.png");
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+                filter: brightness(0.75);
+                transition: flex 1s;
+                color: white;
+            }
+                #days > div.current {
+                    font-weight: bold;
+                    font-size: 130%;
+                }
+                #days > div:hover {
+                    flex: 1.25;
+                    border: 2.5px solid black;
+                    cursor: pointer;
+                }
+        #date {
             flex: 1;
+            width: 100%;
+            border: none;
         }
     footer {
         background-color: green;
@@ -66,13 +88,13 @@ body {
         #settings * {
             padding: 5px;
         }
-        #settings_header {
-            display: flex;
-            flex-direction: row;
-        }
-            #settings_title {
-                flex: 1;
+            #settings_header {
+                display: flex;
+                flex-direction: row;
             }
+                #settings_title {
+                    flex: 1;
+                }
     #loading_screen {
         position: absolute;
         background-color: gray;

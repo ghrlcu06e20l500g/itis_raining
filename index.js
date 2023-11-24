@@ -1,38 +1,28 @@
-temperatures = [
-    30, 30, 30, 30, 30, 30, 30
-];
-humidities = [
-    50, 50, 50, 50, 50, 50, 50
-];
+let selected_date = new Date();
 
 function wait(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
-  
+function ordinalSuffix(integer) {
+    
+}
+function areDatesEqual(date1, date2) {
+    return (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+    );
+}  
 
 document.addEventListener("DOMContentLoaded", async function() {
-    $("#nav_day").click(function() {
-        $("#nav_week").removeClass("selected");
-        $(this).addClass("selected");
-        day();
-    })
-    $("#nav_week").click(function() {
-        $("#nav_day").removeClass("selected");
-        $(this).addClass("selected");
-        week();
-    })
+    $("#nav_day").click(() => day(selected_date));
+    $("#nav_week").click(() => week());
     week();
     
-    $("#settings_button").click(function() {
-        $("#settings").toggle();
-    });
+    $("#settings_button").click(() => $("#settings").toggle());
+    $("#settings_close_button").click(() => $("#settings").hide());
     $("#settings").hide();
-    $("#settings_close_button").click(function() {
-        $("#settings").hide();
-    });
-    
-    
-    $("#date").val(new Date().toISOString().split("T")[0]);
+
     await wait(500);
     $("#loading_screen").hide();
 });
@@ -40,49 +30,64 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 
 
-function day() {
+function day(date) {
+    $("#nav_week").removeClass("selected");
+    $("#nav_day").addClass("selected");
     $("main").html( /* html */ `
-        <div>day</div>
+        <div>${date.toString()}</div>
     `);
 }
-function week() {
+
+function week() {  
+    let currentDayOfWeek = selected_date.getDay();
+    
+    // Adjust the current day of the week to consider Monday as the first day
+    if(currentDayOfWeek == 0) currentDayOfWeek = 6; // Sunday is considered the last day in this case
+    else currentDayOfWeek -= 1;
+    
+    // Calculate the start of the week (Monday) by subtracting the adjusted current day of the week
+    let startOfWeek = new Date(selected_date);
+    startOfWeek.setDate(selected_date.getDate() - currentDayOfWeek);
+    
+    let weekDays = [];
+    
+    for(let i = 0; i < 7; i++) {
+        let currentDate = new Date();
+        currentDate.setDate(startOfWeek.getDate() + i);
+        weekDays.push(new Day(currentDate));
+    }
+
+    $("#nav_day").removeClass("selected");
+    $("#nav_week").addClass("selected");
+
+    let today = new Date();
     $("main").html( /* html */ `
         <div id="days">
-            <div>
-                <div>MONDAY</div>
-                <div>${temperatures[0]}°C</div>
-                <div>${humidities[0]}%H</div>
-            </div>
-            <div>
-                <div>TUESDAY</div>
-                <div>${temperatures[1]}°C</div>
-                <div>${humidities[1]}%H</div>
-            </div>
-            <div>
-                <div>WEDNESDAY</div>
-                <div>${temperatures[2]}°C</div>
-                <div>${humidities[2]}%H</div>
-            </div>
-            <div>
-                <div>THURSDAY</div>
-                <div>${temperatures[3]}°C</div>
-                <div>${humidities[3]}%H</div>
-            </div>
-            <div>
-                <div>FRIDAY</div>
-                <div>${temperatures[4]}°C</div>
-                <div>${humidities[4]}%H</div>
-            </div>
-            <div>
-                <div>SATURDAY</div>
-                <div>${temperatures[5]}°C</div>
-                <div>${humidities[5]}%H</div>
-            </div>
-            <div>
-                <div>SUNDAY</div>
-                <div>${temperatures[6]}°C</div>
-                <div>${humidities[6]}%H</div>
-            </div>
+            ${weekDays.map(function(element) {
+                return /* html */ `
+                    <div ${areDatesEqual(element.date, today) ? 'class="current"' : ''}
+                        style = "background-image: url('images/backgrounds/${element.weather}.png');"
+                        title = "Click to view day"
+                    >
+                        <div id="day_weekday">${element.weekdayString().toUpperCase()}</div>
+                        <div id="day_date">${element.date.getDate()}${element.suffix()} of ${element.monthString()}</div>
+                        <div id="day_temperature">${element.temperature}°C</div>
+                        <div id="day_humidity">${element.humidity}%H</div>
+                    </div>
+                `;
+            }).join("")}
         </div>
+        <input type="date" id="date">
     `);
+    $("main").css({
+        "background-image": "url()"
+    });
+    $("#days > div").click(() => day(new Date()));
+    $("#date").val(selected_date.toISOString().split("T")[0]);
+    $("#date").on("change", function() {
+        selected_date = new Date($(this).val());
+        week();
+    });
 }
+
+  
