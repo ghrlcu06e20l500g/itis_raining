@@ -16,6 +16,7 @@ class Day {
         this.date = new Date(date.toISOString().split("T")[0]);
         this._temperature = null;
         this._humidity = null;
+        this._weather = null;
     }
     get temperature() {
         return 30;
@@ -52,6 +53,7 @@ class Time {
         this.date = new Date(date.toString());
         this._temperature = null;
         this._humidity = null;
+        this._weather = null;
     }
     get temperature() {
         return 30;
