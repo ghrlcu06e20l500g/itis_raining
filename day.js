@@ -2,8 +2,9 @@ function day(date) {
     $("#nav_week").removeClass("selected");
     $("#nav_day").addClass("selected");
 
-    getData();
-
+    let worker = new Worker("secondThread.js");
+    while(worker_updating);
+    
     $("main").html( /* html */ `
         <div>${date.toString()}</div>
         <canvas id="temperature_chart"></canvas>
