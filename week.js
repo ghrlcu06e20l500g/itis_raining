@@ -29,57 +29,63 @@ function week() {
         "background-image": "url()"
     });
     $("#days > div").click(() => day(new Date()));
-  
-    new Chart($("#temperature_chart")[0].getContext("2d"), {
-        type: "line",
-        data: {
-            labels: currentWeek.map(date => weekDays[date.getDay()]),
-            datasets: [{
-                label: "Temperature",
-                data: week_temperature_data,
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 2,
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    type: "category",
-                    position: "bottom"
-                },
-                y: {
-                    beginAtZero: true
+
+    try {
+        if(week_temperature_data.some(element => element == null)) throw(new Error("Found null temperature data."));
+        new Chart($("#temperature_chart")[0].getContext("2d"), {
+            type: "line",
+            data: {
+                labels: currentWeek.map(date => weekDays[date.getDay()]),
+                datasets: [{
+                    label: "Temperature",
+                    data: week_temperature_data,
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: "category",
+                        position: "bottom"
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-    new Chart($("#humidity_chart")[0].getContext("2d"), {
-        type: "line",
-        data: {
-            labels: currentWeek.map(date => weekDays[date.getDay()]),
-            datasets: [{
-                label: "Temperature",
-                data: week_humidity_data,
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 2,
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    type: "category",
-                    position: "bottom"
-                },
-                y: {
-                    beginAtZero: true
+        });
+        if(week_humidity_data.some(element => element == null)) throw(new Error("Found null humidity data."));
+        new Chart($("#humidity_chart")[0].getContext("2d"), {
+            type: "line",
+            data: {
+                labels: currentWeek.map(date => weekDays[date.getDay()]),
+                datasets: [{
+                    label: "Temperature",
+                    data: week_humidity_data,
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: "category",
+                        position: "bottom"
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
+    } catch(error) {
+        console.error(`Unable to load week graphs: ${error.message}`);
+    }
 }
