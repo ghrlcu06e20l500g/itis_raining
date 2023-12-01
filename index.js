@@ -75,6 +75,8 @@ function week() {
             }).join("")}
         </div>
         <input type="date" id="date">
+        <canvas id="temperature_chart"></canvas>
+        <canvas id="humidity_chart"></canvas>
     `);
     $("main").css({
         "background-image": "url()"
@@ -85,6 +87,11 @@ function week() {
         selected_date = new Date($(this).val());
         week();
     });
+    let temperature_chart = new Chart($("#temperature_chart").getContext("2d"),{
+        type: 'line',
+        data: data,
+        options: options
+    );
 }
 
   
