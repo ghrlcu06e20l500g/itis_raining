@@ -30,6 +30,8 @@ function day(date) {
             }
         }
     });
+
+    
     let humidity_chart = new Chart($("#humidity_chart").getContext("2d"), {
         type: "line",
         data: {
