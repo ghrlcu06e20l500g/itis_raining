@@ -9,4 +9,6 @@ flowchart TD
     utils.js --> ui.js
     utils.js --> week.js
     ui.js --> secondThread.js
+    secondThread.js --> day.js
+    secondThread.js --> week.js
 ```

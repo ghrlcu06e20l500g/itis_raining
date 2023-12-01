@@ -2,7 +2,7 @@ function week() {
     $("#nav_day").removeClass("selected");
     $("#nav_week").addClass("selected");
 
-    let selectedWeek = getWeekDates(selectedDate);
+    let selectedWeek = getWeekDates(currentDate);
     let today = new Date();
     getData();
 
