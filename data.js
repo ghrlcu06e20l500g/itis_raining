@@ -17,7 +17,6 @@ const Weather = {
     SNOW: "snow",
     NO_DATA: "no_data"
 };
-
 class Day {
     constructor(date) {
         this.date = new Date(date.toISOString().split("T")[0]);
