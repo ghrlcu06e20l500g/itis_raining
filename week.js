@@ -1,26 +1,9 @@
-function week() {  
-    let currentDayOfWeek = selected_date.getDay();
-    
-    // Adjust the current day of the week to consider Monday as the first day
-    if(currentDayOfWeek == 0) currentDayOfWeek = 6; // Sunday is considered the last day in this case
-    else currentDayOfWeek -= 1;
-    
-    // Calculate the start of the week (Monday) by subtracting the adjusted current day of the week
-    let startOfWeek = new Date(selected_date);
-    startOfWeek.setDate(selected_date.getDate() - currentDayOfWeek);
-    
-    let weekDays = [];
-    
-    for(let i = 0; i < 7; i++) {
-        let currentDate = new Date();
-        currentDate.setDate(startOfWeek.getDate() + i);
-        weekDays.push(new Day(currentDate));
-    }
-
+function week() {
     $("#nav_day").removeClass("selected");
     $("#nav_week").addClass("selected");
 
-    let today = new Date();
+    let selectedWeek = getWeekDates(selectedDate);
+
     $("main").html( /* html */ `
         <div id="days">
             ${weekDays.map(function(element) {
@@ -45,11 +28,7 @@ function week() {
         "background-image": "url()"
     });
     $("#days > div").click(() => day(new Date()));
-    $("#date").val(selected_date.toISOString().split("T")[0]);
-    $("#date").on("change", function() {
-        selected_date = new Date($(this).val());
-        week();
-    });
+  
     let temperature_chart = new Chart($("#temperature_chart").getContext("2d"), {
         type: "line",
         data: {

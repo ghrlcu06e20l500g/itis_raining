@@ -3,16 +3,10 @@ function day(date) {
     $("#nav_day").addClass("selected");
     $("main").html( /* html */ `
         <div>${date.toString()}</div>
-        <input type="date" id="date">
         <canvas id="temperature_chart"></canvas>
         <canvas id="humidity_chart"></canvas>
     `);
     
-    $("#date").val(selected_date.toISOString().split("T")[0]);
-    $("#date").on("change", function() {
-        selected_date = new Date($(this).val());
-        week();
-    });
     new Chart($("#temperature_chart").getContext("2d"), {
         type: "line",
         data: {
@@ -39,7 +33,7 @@ function day(date) {
             }
         }
     });
-    let humidity_chart = new Chart($("#humidity_chart").getContext("2d"), {
+    new Chart($("#humidity_chart").getContext("2d"), {
         type: "line",
         data: {
             labels: current_week.dayStrings,
