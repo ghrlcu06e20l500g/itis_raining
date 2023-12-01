@@ -89,9 +89,14 @@ class Day {
     currentConditions()
     {
         dataUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61034&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
-        fetchData();
+        fetchData(1);
     }
     
+    getCurrentConditions(response)
+    {
+        
+    }
+
     fetchData(ev)
     {
         fetch(dataUrl)
@@ -101,8 +106,15 @@ class Day {
                 return response.json();
             })
             .then((response) => {
-                temperature(response);
-                humidity(response);
+                if(ev==0)
+                {
+                    temperature(response);
+                    humidity(response);
+                }
+                else
+                {
+
+                }
             })
             .catch(console.warn);
     }
