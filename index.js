@@ -3,9 +3,6 @@ let selected_date = new Date();
 function wait(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
-function ordinalSuffix(integer) {
-    
-}
 function areDatesEqual(date1, date2) {
     return (
         date1.getFullYear() === date2.getFullYear() &&
