@@ -19,9 +19,17 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     let worker = new Worker("secondThread.js");
     worker.addEventListener("message", (data) => {
+        data = data.data;
         if(data.message === "ui")
             {updateUI = data.passed;}
+        else if(data.message === "dayData")
+        {
+
+        }
+        else if(data.message === "weekData")
+        {
             
+        }
     });
     while (worker_updating);
 
