@@ -85,7 +85,9 @@ function writeWeekData(response) {
     postMessage({
         "week_temp": week_temperature_data,
         "week_hum": week_humidity_data,
+        "loading": false,
     });
 }
 
 getData();
+setInterval(getData, 30*60*1000);
