@@ -5,18 +5,11 @@ var day_tempIndex = 0, day_humIndex = 0, week_humIndex = 0, week_tempIndex = 0;
 var currentDate = new Date(), dataDay;
 var lastWeek, week;
 var date = [];
-var updateUI = () => {};
 
-function getData(ev) {
-    updateUI();
-    postMessage(
-    {
-        "message": "updateUI",
-        "passed": updateUI,
-    });
+function getData() {
     fetch(dataUrl)
         .then(response => {
-            if (!response.ok)
+            if(!response.ok)
                 throw new Error("Something went wrong");
             return response.json();
         })
@@ -35,11 +28,11 @@ function writeDayData(response) {
     do {
         currentResponse = response.pop();
         dataDay = currentResponse["data_ora"].slice(8, 10);
-        if (currentResponse.tipo == "UMIDITA") {
+        if(currentResponse.tipo == "UMIDITA") {
             day_humidity_data[day_humIndex] = currentResponse['valore'];
             day_humIndex++;
         }
-        else if (currentResponse.tipo == "TEMPERATURA") {
+        else if(currentResponse.tipo == "TEMPERATURA") {
             day_temperature_data[day_tempIndex] = currentResponse['valore'];
             day_tempIndex++;
         }
@@ -80,11 +73,11 @@ function writeWeekData(response) {
 
         week = new Date(date[0], date[1] - 1, date[2]);
 
-        if (currentResponse["tipo"] === "UMIDITA") {
+        if(currentResponse["tipo"] === "UMIDITA") {
             week_humidity_data[week_humIndex] = currentResponse["valore"];
             week_humIndex++;
         }
-        else if (currentResponse["tipo"] === "TEMPERATURA") {
+        else if(currentResponse["tipo"] === "TEMPERATURA") {
             week_temperature_data[week_tempIndex] = currentResponse["valore"];
             week_tempIndex++;
         }
@@ -97,6 +90,3 @@ function writeWeekData(response) {
         "loading": false,
     });
 }
-
-getData();
-setInterval(getData, 30*60*1000);

@@ -7,7 +7,7 @@ function day(date) {
         <canvas id="temperature_chart"></canvas>
         <canvas id="humidity_chart"></canvas>
     `);
-    new Chart($("#temperature_chart").getContext("2d"), {
+    new Chart($("#temperature_chart")[0].getContext("2d"), {
         type: "line",
         data: {
             labels: [
@@ -36,7 +36,7 @@ function day(date) {
             }
         }
     });
-    new Chart($("#humidity_chart").getContext("2d"), {
+    new Chart($("#humidity_chart")[0].getContext("2d"), {
         type: "line",
         data: {
             labels: [

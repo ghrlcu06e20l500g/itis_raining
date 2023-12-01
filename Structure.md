@@ -2,12 +2,11 @@
 
 ``` mermaid
 flowchart TD
-    data.js --> week.js
-    data.js --> day.js
-    day.js --> ui.js
+    weekUtil.js --> week.js
     week.js --> ui.js
-    week_util.js --> week.js
-    ui.js --> secondThread.js
-    secondThread.js --> day.js
-    secondThread.js --> week.js
+    day.js --> ui.js
+    serverData.js --> ui.js
+    serverData.js --> day.js
+    serverData.js --> week.js
+    forcastData.js
 ```

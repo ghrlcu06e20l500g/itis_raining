@@ -2,21 +2,21 @@ function week() {
     $("#nav_day").removeClass("selected");
     $("#nav_week").addClass("selected");
 
-    let selectedWeek = getWeekDates(currentDate);
+    let currentWeek = getWeekDates(currentDate);
     let today = new Date();
     getData();
 
     let daysHtml = '';
 
-    for(let i = 0; i < selectedWeek.length; i++) daysHtml += /* html */ `
-        <div ${areDatesEqual(selectedWeek[i], today) ? 'class="current"' : ''}
+    for(let i = 0; i < currentWeek.length; i++) daysHtml += /* html */ `
+        <div ${areDatesEqual(currentWeek[i], today) ? 'class="current"' : ''}
             style="background-image: url('images/backgrounds/${"cloudy"}.png');"
             title="Click to view day"
         >
-            <div id="day_weekday">${weekDays[selectedWeek[i].getDay()]}</div>
-            <div id="day_date">${selectedWeek[i].getDate()}${suffix(selectedWeek[i])} of ${months[selectedWeek[i].getMonth()]}</div>
-            <div id="day_temperature">${temperature_data[i]}°C</div>
-            <div id="day_humidity">${humidity_data[i]}%H</div>
+            <div id="day_weekday">${weekDays[currentWeek[i].getDay()]}</div>
+            <div id="day_date">${currentWeek[i].getDate()}${suffix(currentWeek[i])} of ${months[currentWeek[i].getMonth()]}</div>
+            <div id="day_temperature">${week_temperature_data[i]}°C</div>
+            <div id="day_humidity">${week_humidity_data[i]}%H</div>
         </div>
     `;
 
@@ -30,13 +30,13 @@ function week() {
     });
     $("#days > div").click(() => day(new Date()));
   
-    let temperature_chart = new Chart($("#temperature_chart").getContext("2d"), {
+    new Chart($("#temperature_chart")[0].getContext("2d"), {
         type: "line",
         data: {
-            labels: current_week.dayStrings,
+            labels: currentWeek.map(date => weekDays[date.getDay()]),
             datasets: [{
                 label: "Temperature",
-                data: current_week.temperatures,
+                data: week_temperature_data,
                 borderColor: "rgba(75, 192, 192, 1)",
                 borderWidth: 2,
                 fill: false
@@ -56,13 +56,13 @@ function week() {
             }
         }
     });
-    let humidity_chart = new Chart($("#humidity_chart").getContext("2d"), {
+    new Chart($("#humidity_chart")[0].getContext("2d"), {
         type: "line",
         data: {
-            labels: current_week.dayStrings,
+            labels: currentWeek.map(date => weekDays[date.getDay()]),
             datasets: [{
                 label: "Temperature",
-                data: current_week.temperatures,
+                data: week_humidity_data,
                 borderColor: "rgba(75, 192, 192, 1)",
                 borderWidth: 2,
                 fill: false
