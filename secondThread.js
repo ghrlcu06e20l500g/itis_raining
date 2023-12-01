@@ -91,6 +91,7 @@ function writeWeekData(response) {
     } while (week.toDateString() != lastWeek.toDateString());
 
     postMessage({
+        "message": "weekData",
         "week_temp": week_temperature_data,
         "week_hum": week_humidity_data,
         "loading": false,
