@@ -1,8 +1,3 @@
-/*
-    Da modificare temperature(), humidity() e weather() delle classi perché restituiscano i dati di this.date
-    (per qualche motivo this è obbligatorio in javascript)
-*/
-
 var dataUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
 var currentResponse;
 var temperature_data = [];

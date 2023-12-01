@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", async function() {
             
         }
     });
-    while (worker_updating);
+    while(worker_updating);
 
-    await wait(500);
+    new Promise(resolve => setTimeout(resolve, 500));
     $("#loading_screen").hide();
 });

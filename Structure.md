@@ -6,8 +6,7 @@ flowchart TD
     data.js --> day.js
     day.js --> ui.js
     week.js --> ui.js
-    utils.js --> ui.js
-    utils.js --> week.js
+    week_util.js --> week.js
     ui.js --> secondThread.js
     secondThread.js --> day.js
     secondThread.js --> week.js
