@@ -8,13 +8,13 @@ function week() {
 
     let daysHtml = '';
 
-    for(let i = 0; i < selecetedWeek.length; i++) daysHtml += /* html */ `
-        <div ${areDatesEqual(selecetedWeek[i], today) ? 'class="current"' : ''}
+    for(let i = 0; i < selectedWeek.length; i++) daysHtml += /* html */ `
+        <div ${areDatesEqual(selectedWeek[i], today) ? 'class="current"' : ''}
             style="background-image: url('images/backgrounds/${"cloudy"}.png');"
             title="Click to view day"
         >
-            <div id="day_weekday">${weekDays[selecetedWeek[i].getDay()]}</div>
-            <div id="day_date">${selecetedWeek[i].getDate()}${suffix(selecetedWeek[i])} of ${months[selecetedWeek[i].getMonth()]}</div>
+            <div id="day_weekday">${weekDays[selectedWeek[i].getDay()]}</div>
+            <div id="day_date">${selectedWeek[i].getDate()}${suffix(selectedWeek[i])} of ${months[selectedWeek[i].getMonth()]}</div>
             <div id="day_temperature">${temperature_data[i]}°C</div>
             <div id="day_humidity">${humidity_data[i]}%H</div>
         </div>
