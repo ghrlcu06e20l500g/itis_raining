@@ -11,6 +11,19 @@ const Weather = {
     SNOW: "snow",
     NO_DATA: "no_data"
 };
+
+let week = {
+    days: [],
+    temperatures: [],
+    humidities: [],
+    weather: []
+}
+
+class Week {
+    constructor(date) {
+        this.date = new Date();
+    }
+}
 class Day {
     constructor(date) {
         this.date = new Date(date.toISOString().split("T")[0]);
