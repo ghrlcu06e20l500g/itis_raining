@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function() {
+    var updateUI;
+    
     $("#nav_day").click(() => day(selected_date));
     $("#nav_week").click(() => week());
     week();
@@ -13,6 +15,15 @@ document.addEventListener("DOMContentLoaded", async function() {
         if($("#nav_week").hasClass("selected")) week();
         else day();
     });
+    
+
+    let worker = new Worker("secondThread.js");
+    worker.addEventListener("message", (data) => {
+        if(data.message === "ui")
+            {updateUI = data.passed;}
+            
+    });
+    while (worker_updating);
 
     await wait(500);
     $("#loading_screen").hide();

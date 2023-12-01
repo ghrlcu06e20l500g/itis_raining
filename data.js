@@ -32,20 +32,6 @@ var forecast_conditions =
         { "conditions": "", "temp": 0, "hum": 0, "date": null }, //15
     ];
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    getPrevision();
-    //prima passa temp data e poi hum data
-    //prima del giorno e poi della settimana
-    
-    /***************Chimata worker***************/
-    worker = new Worker("secondThread.js");
-    worker.addEventListener("message", (data) => 
-    {
-        return data.data;
-    })
-})
-
 function getPrevision() {
     fetch(dataUrl)
         .then(response => {

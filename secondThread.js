@@ -5,8 +5,15 @@ var day_tempIndex = 0, day_humIndex = 0, week_humIndex = 0, week_tempIndex = 0;
 var currentDate = new Date(), dataDay;
 var lastWeek, week;
 var date = [];
+var updateUI = () => {};
 
 function getData(ev) {
+    updateUI();
+    postMessage(
+    {
+        "message": "updateUI",
+        "passed": updateUI,
+    });
     fetch(dataUrl)
         .then(response => {
             if (!response.ok)
@@ -39,6 +46,7 @@ function writeDayData(response) {
     } while (dataDay == currentDate.toString().slice(8, 10));
 
     postMessage({
+        "message": "dayData",
         "day_temp": day_temperature_data,
         "day_hum": day_humidity_data,
     });

@@ -1,9 +1,6 @@
 function day(date) {
     $("#nav_week").removeClass("selected");
     $("#nav_day").addClass("selected");
-
-    let worker = new Worker("secondThread.js");
-    while(worker_updating);
     
     $("main").html( /* html */ `
         <div>${date.toString()}</div>
