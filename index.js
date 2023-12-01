@@ -1,15 +1,11 @@
 let selected_date = new Date();
 
-function wait(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
+let week = {
+    days: [],
+    temperatures: [],
+    humidities: [],
+    weather: []
 }
-function areDatesEqual(date1, date2) {
-    return (
-        date1.getFullYear() === date2.getFullYear() &&
-        date1.getMonth() === date2.getMonth() &&
-        date1.getDate() === date2.getDate()
-    );
-}  
 
 document.addEventListener("DOMContentLoaded", async function() {
     $("#nav_day").click(() => day(selected_date));
@@ -30,6 +26,58 @@ function day(date) {
     $("main").html( /* html */ `
         <div>${date.toString()}</div>
     `);
+    let temperature_chart = new Chart($("#temperature_chart").getContext("2d"), {
+        type: "line",
+        data: {
+            labels: current_week.dayStrings,
+            datasets: [{
+                label: "Temperature",
+                data: current_week.temperatures,
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: "category",
+                    position: "bottom"
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    let humidity_chart = new Chart($("#humidity_chart").getContext("2d"), {
+        type: "line",
+        data: {
+            labels: current_week.dayStrings,
+            datasets: [{
+                label: "Temperature",
+                data: current_week.temperatures,
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: "category",
+                    position: "bottom"
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 function week() {  
@@ -138,10 +186,3 @@ function week() {
     });
 }
 
-  
-let week = {
-    days: [],
-    temperatures: [],
-    humidities: [],
-    weather: []
-}
