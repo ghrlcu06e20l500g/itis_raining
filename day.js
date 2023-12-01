@@ -39,7 +39,7 @@ function day(date) {
             }
         }
     });
-    new Chart($("#humidity_chart").getContext("2d"), {
+    let humidity_chart = new Chart($("#humidity_chart").getContext("2d"), {
         type: "line",
         data: {
             labels: current_week.dayStrings,
