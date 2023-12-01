@@ -5,6 +5,9 @@
 
 var dataUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
 var currentResponse;
-var temperature_data = [], humidity_data = [];
+var temperature_data = [];
+var humidity_data = [];
 var tempIndex = 0, humIndex = 0;
 var currentDate = new Date(), dataDay;
+
+var selected_date = Date();
