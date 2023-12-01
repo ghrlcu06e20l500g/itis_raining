@@ -1,6 +1,9 @@
+function updateUI() {
+    if($("#nav_week").hasClass("selected")) week();
+    else day();
+}
+
 document.addEventListener("DOMContentLoaded", async function() {
-    var updateUI;
-    
     $("#nav_day").click(() => day(selected_date));
     $("#nav_week").click(() => week());
     week();
@@ -12,11 +15,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     $("#date").val(currentDate.toISOString().split("T")[0]);
     $("#date").on("change", function() {
         currentDate = new Date($(this).val());
-        if($("#nav_week").hasClass("selected")) week();
-        else day();
+        updateUI();
     });
     
-
     let worker = new Worker("secondThread.js");
     worker.addEventListener("message", (data) => {
         if(data.message === "ui")
