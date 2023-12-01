@@ -3,24 +3,25 @@ function week() {
     $("#nav_week").addClass("selected");
 
     let selectedWeek = getWeekDates(selectedDate);
+    let today = new Date();
+    getData();
+
+    let daysHtml = '';
+
+    for(let i = 0; i < selecetedWeek.length; i++) daysHtml += /* html */ `
+        <div ${areDatesEqual(selecetedWeek[i], today) ? 'class="current"' : ''}
+            style="background-image: url('images/backgrounds/${"cloudy"}.png');"
+            title="Click to view day"
+        >
+            <div id="day_weekday">${weekDays[selecetedWeek[i].getDay()]}</div>
+            <div id="day_date">${selecetedWeek[i].getDate()}${suffix(selecetedWeek[i])} of ${months[selecetedWeek[i].getMonth()]}</div>
+            <div id="day_temperature">${temperature_data[i]}°C</div>
+            <div id="day_humidity">${humidity_data[i]}%H</div>
+        </div>
+    `;
 
     $("main").html( /* html */ `
-        <div id="days">
-            ${weekDays.map(function(element) {
-                return /* html */ `
-                    <div ${areDatesEqual(element.date, today) ? 'class="current"' : ''}
-                        style = "background-image: url('images/backgrounds/${element.weather}.png');"
-                        title = "Click to view day"
-                    >
-                        <div id="day_weekday">${element.weekdayString().toUpperCase()}</div>
-                        <div id="day_date">${element.date.getDate()}${element.suffix()} of ${element.monthString()}</div>
-                        <div id="day_temperature">${element.temperature}°C</div>
-                        <div id="day_humidity">${element.humidity}%H</div>
-                    </div>
-                `;
-            }).join("")}
-        </div>
-        <input type="date" id="date">
+        <div id="days">${daysHtml}</div>
         <canvas id="temperature_chart"></canvas>
         <canvas id="humidity_chart"></canvas>
     `);

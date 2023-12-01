@@ -9,5 +9,3 @@ var temperature_data = [];
 var humidity_data = [];
 var tempIndex = 0, humIndex = 0;
 var currentDate = new Date(), dataDay;
-
-var selectedDate = new Date();

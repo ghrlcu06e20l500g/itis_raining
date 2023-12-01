@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     $("#settings_close_button").click(() => $("#settings").hide());
     $("#settings").hide();
 
-    $("#date").val(selectedDate.toISOString().split("T")[0]);
+    $("#date").val(currentDate.toISOString().split("T")[0]);
     $("#date").on("change", function() {
-        selectedDate = new Date($(this).val());
+        currentDate = new Date($(this).val());
         if($("#nav_week").hasClass("selected")) week();
         else day();
     });
