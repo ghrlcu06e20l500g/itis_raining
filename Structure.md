@@ -8,4 +8,5 @@ flowchart TD
     week.js --> ui.js
     utils.js --> ui.js
     utils.js --> week.js
+    ui.js --> secondThread.js
 ```
