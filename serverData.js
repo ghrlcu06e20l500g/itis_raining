@@ -1,10 +1,6 @@
 var dataUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
 var currentResponse;
-var day_humidity_data = [], week_humidity_data = [], week_temperature_data = [], day_temperature_data = [];
-var day_tempIndex = 0, day_humIndex = 0, week_humIndex = 0, week_tempIndex = 0;
 var currentDate = new Date(), dataDay;
-var lastWeek, week;
-var date = [];
 
 function getData() {
     fetch(dataUrl)
@@ -22,8 +18,9 @@ function getData() {
 
 
 function writeDayData(response) {
-    day_tempIndex = 0;
-    day_humIndex = 0;
+    var day_temperature_data = [], day_humidity_data = [];
+    var day_tempIndex = 0;
+    var day_humIndex = 0;
 
     do {
         currentResponse = response.pop();
@@ -40,14 +37,19 @@ function writeDayData(response) {
 
     postMessage({
         "message": "dayData",
-        "day_temp": day_temperature_data,
-        "day_hum": day_humidity_data,
+        "temp": day_temperature_data,
+        "hum": day_humidity_data,
+        "tempIndex" : day_tempIndex,
+        "humIndex" : day_humidity,
     });
 }
 
 function writeWeekData(response) {
-    week_tempIndex = 0;
-    week_humIndex = 0;
+    var week_humidity_data = [], week_temperature_data = [];
+    var week_tempIndex = 0;
+    var week_humIndex = 0;
+    var lastWeek, week;
+    var date = [];
 
     week = response[response.length - 1]["data_ora"].slice(0, 10);
     copyWeek = week;
@@ -81,12 +83,13 @@ function writeWeekData(response) {
             week_temperature_data[week_tempIndex] = currentResponse["valore"];
             week_tempIndex++;
         }
-    } while (week.toDateString() != lastWeek.toDateString());
+    }while(week.toDateString() != lastWeek.toDateString());
 
     postMessage({
         "message": "weekData",
-        "week_temp": week_temperature_data,
-        "week_hum": week_humidity_data,
-        "loading": false,
+        "temp": week_temperature_data,
+        "hum": week_humidity_data,
+        "humIndex": week_humIndex,
+        "tempIndex": week_tempIndex,
     });
 }
