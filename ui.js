@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     setInterval(update, 1000 * 60 * 30);
     
     let worker = new Worker("secondThread.js");
-    worker.addEventListener("message", function getMessages(data) 
+    worker.addEventListener("message", async function getMessages(data)
     {
         data = data.data;
         if(data.message === "dayData")
