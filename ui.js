@@ -1,3 +1,8 @@
+/* 
+    DA FARE:
+        UPDATE OGNI 30 MIN VERIFICANDO L'ORARIO DEL MOMENTO 
+*/
+
 function update() {
     if($("#nav_week").hasClass("selected")) week();
     else day();
@@ -30,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     setInterval(update, 1000 * 60 * 30);
     
     let worker = new Worker("secondThread.js");
-    worker.addEventListener("message", async function getMessages(data)
+    worker.addEventListener("message", (data) =>
     {
         data = data.data;
         if(data.message === "dayData")
@@ -52,11 +57,12 @@ document.addEventListener("DOMContentLoaded", async function() {
                 {week_temperature_data[i] = data.temp[i];}
             week_tempIndex = data.tempIndex;
         }
-
-        if(data.message!="weekData")
-            {getMessages;}
     });
 
-    new Promise(resolve => setTimeout(resolve, 500));
-    $("#loading_screen").hide();
+    setTimeout(() => 
+    {
+            new Promise(resolve => setTimeout(resolve, 500));
+            $("#loading_screen").hide();
+    }, 2000);
+
 });

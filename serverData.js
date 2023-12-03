@@ -33,7 +33,7 @@ function writeDayData(response) {
             day_temperature_data[day_tempIndex] = currentResponse['valore'];
             day_tempIndex++;
         }
-    } while (dataDay == currentDate.toString().slice(8, 10));
+    }while(dataDay == currentDate.toString().slice(8, 10));
 
     postMessage({
         "message": "dayData",
