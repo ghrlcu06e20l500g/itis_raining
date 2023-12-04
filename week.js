@@ -4,19 +4,18 @@ function week() {
 
     let currentWeek = getWeekDates(currentDate);
     let today = new Date();
-    getData();
 
-    let daysHtml = '';
+    let daysHtml = "";
 
     for(let i = 0; i < currentWeek.length; i++) daysHtml += /* html */ `
-        <div ${areDatesEqual(currentWeek[i], today) ? 'class="current"' : ''}
+        <div ${areDatesEqual(currentWeek[i], today)? 'class="current"' : ""}
             style="background-image: url('images/backgrounds/${"cloudy"}.png');"
             title="Click to view day"
         >
             <div id="day_weekday">${weekDays[currentWeek[i].getDay()]}</div>
             <div id="day_date">${currentWeek[i].getDate()}${suffix(currentWeek[i])} of ${months[currentWeek[i].getMonth()]}</div>
-            <div id="day_temperature">${week_temperature_data[i]}°C</div>
-            <div id="day_humidity">${week_humidity_data[i]}%H</div>
+            <div id="day_temperature">${currentData.temperatues[i]}°C</div>
+            <div id="day_humidity">${currentData.humidities[i]}%H</div>
         </div>
     `;
 
@@ -31,14 +30,14 @@ function week() {
     $("#days > div").click(() => day(new Date()));
 
     try {
-        if(week_temperature_data.some(element => element == null)) throw(new Error("Found null temperature data."));
+        if(currentData.temperatues.some(element => element == null)) throw(new Error("Found null temperature data."));
         new Chart($("#temperature_chart")[0].getContext("2d"), {
             type: "line",
             data: {
                 labels: currentWeek.map(date => weekDays[date.getDay()]),
                 datasets: [{
                     label: "Temperature",
-                    data: week_temperature_data,
+                    data: currentData.temperatues,
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 2,
                     fill: false
@@ -58,14 +57,14 @@ function week() {
                 }
             }
         });
-        if(week_humidity_data.some(element => element == null)) throw(new Error("Found null humidity data."));
+        if(currentData.humidities.some(element => element == null)) throw(new Error("Found null humidity data."));
         new Chart($("#humidity_chart")[0].getContext("2d"), {
             type: "line",
             data: {
                 labels: currentWeek.map(date => weekDays[date.getDay()]),
                 datasets: [{
                     label: "Temperature",
-                    data: week_humidity_data,
+                    data: currentData.humidities,
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 2,
                     fill: false

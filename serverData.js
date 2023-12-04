@@ -1,53 +1,67 @@
 var dataUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
-var currentResponse;
+var currentData = null;
 var currentDate = new Date(), dataDay;
 
-function getData() {
+function getDayData() {
+    var data;
     fetch(dataUrl)
         .then(response => {
             if(!response.ok)
-                throw new Error("Something went wrong");
+                throw new Error("Cannot connect to server.");
             return response.json();
         })
         .then((response) => {
-            writeDayData(response);
-            writeWeekData(response);
+            data = writeDayData(response);
         })
         .catch(console.warn);
+    return data;
 }
 
-
 function writeDayData(response) {
-    var day_temperature_data = [], day_humidity_data = [];
-    var day_tempIndex = 0;
-    var day_humIndex = 0;
+    var data = {
+        temperatures: [],
+        humdities: [],
+        temperatureIndex: 0,
+        humidityIndex: 0
+    };
 
     do {
         currentResponse = response.pop();
         dataDay = currentResponse["data_ora"].slice(8, 10);
         if(currentResponse.tipo == "UMIDITA") {
-            day_humidity_data[day_humIndex] = currentResponse['valore'];
-            day_humIndex++;
+            data.humdities[data.humidityIndex] = currentResponse['valore'];
+            data.humidityIndex++;
+        } else if(currentResponse.tipo == "TEMPERATURA") {
+            data.temperatures[data.temperatureIndex] = currentResponse['valore'];
+            data.temperatureIndex++;
         }
-        else if(currentResponse.tipo == "TEMPERATURA") {
-            day_temperature_data[day_tempIndex] = currentResponse['valore'];
-            day_tempIndex++;
-        }
-    }while(dataDay == currentDate.toString().slice(8, 10));
+    } while(dataDay == currentDate.toString().slice(8, 10));
 
-    postMessage({
-        "message": "dayData",
-        "temp": day_temperature_data,
-        "hum": day_humidity_data,
-        "tempIndex" : day_tempIndex,
-        "humIndex" : day_humidity,
-    });
+    return data;
+}
+
+function getWeekData() {
+    var data;
+    fetch(dataUrl)
+        .then(response => {
+            if(!response.ok)
+                throw new Error("Cannot connect to server.");
+            return response.json();
+        })
+        .then((response) => {
+            data = writeWeekData(response);
+        })
+        .catch(console.warn);
+    return data;
 }
 
 function writeWeekData(response) {
-    var week_humidity_data = [], week_temperature_data = [];
-    var week_tempIndex = 0;
-    var week_humIndex = 0;
+    var data = {
+        temperatures: [],
+        humdities: [],
+        temperatureIndex: 0,
+        humidityIndex: 0
+    };
     var lastWeek, week;
     var date = [];
 
@@ -76,20 +90,13 @@ function writeWeekData(response) {
         week = new Date(date[0], date[1] - 1, date[2]);
 
         if(currentResponse["tipo"] === "UMIDITA") {
-            week_humidity_data[week_humIndex] = currentResponse["valore"];
-            week_humIndex++;
+            week.humdities[week.humidityIndex] = currentResponse["valore"];
+            week.humidityIndex++;
+        } else if(currentResponse["tipo"] === "TEMPERATURA") {
+            week.temperatures[week.temperatureIndex] = currentResponse["valore"];
+            week.temperatureIndex++;
         }
-        else if(currentResponse["tipo"] === "TEMPERATURA") {
-            week_temperature_data[week_tempIndex] = currentResponse["valore"];
-            week_tempIndex++;
-        }
-    }while(week.toDateString() != lastWeek.toDateString());
+    } while(week.toDateString() != lastWeek.toDateString());
 
-    postMessage({
-        "message": "weekData",
-        "temp": week_temperature_data,
-        "hum": week_humidity_data,
-        "humIndex": week_humIndex,
-        "tempIndex": week_tempIndex,
-    });
+    return data;
 }

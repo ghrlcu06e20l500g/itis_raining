@@ -8,7 +8,7 @@ function day(date) {
         <canvas id="humidity_chart"></canvas>
     `);
     try {
-        if(day_temperature_data.some(element => element == null)) throw(new Error("Found null temperature data."));
+        if(currentData.temperatures.some(element => element == null)) throw(new Error("Found null temperature data."));
         new Chart($("#temperature_chart")[0].getContext("2d"), {
             type: "line",
             data: {
@@ -18,7 +18,7 @@ function day(date) {
                 ],
                 datasets: [{
                     label: "Temperature",
-                    data: day_temperature_data,
+                    data: currentData.temperatures,
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 2,
                     fill: false
@@ -38,7 +38,7 @@ function day(date) {
                 }
             }
         });
-        if(day_humidity_data.some(element => element == null)) throw(new Error("Found null humidity data."));
+        if(currentData.humidies.some(element => element == null)) throw(new Error("Found null humidity data."));
         new Chart($("#humidity_chart")[0].getContext("2d"), {
             type: "line",
             data: {
@@ -48,7 +48,7 @@ function day(date) {
                 ],
                 datasets: [{
                     label: "Temperature",
-                    data: day_humidity_data,
+                    data: currentData.humidies,
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 2,
                     fill: false

@@ -3,21 +3,22 @@
         UPDATE OGNI 30 MIN VERIFICANDO L'ORARIO DEL MOMENTO 
 */
 
+
 function update() {
-    if($("#nav_week").hasClass("selected")) week();
-    else day();
+    $("#loading_screen").show();
+
+    if($("#nav_week").hasClass("selected")) {
+        currentData = getWeekData();
+        week();
+    } else {
+        currentData = getDayData();
+        day();
+    };
+    
+    $("#loading_screen").hide();
 }
 
-
 document.addEventListener("DOMContentLoaded", async function() {
-    /*
-        Variabili di appoggio per i dati di temperatura e umidità della scuola
-        NON SO DOVE LI VUOI METTERE 
-    */
-    var week_humidity_data = [], week_temperature_data = [], day_temperature_data = [], day_humidity_data = [];
-    var week_humIndex, week_tempIndex, day_humIndex, day_tempIndex, i;
-    /* Verificare se gli indici di temperatura e umidità conincidono; in caso tenere solo un indice per dato */
-
     $("#nav_day").click(() => day(selected_date));
     $("#nav_week").click(() => week());
     
@@ -34,35 +35,5 @@ document.addEventListener("DOMContentLoaded", async function() {
     update();
     setInterval(update, 1000 * 60 * 30);
     
-    let worker = new Worker("secondThread.js");
-    worker.addEventListener("message", (data) =>
-    {
-        data = data.data;
-        if(data.message === "dayData")
-        {
-            for(i=0; i<data.humIndex; i++)
-                {day_humidity_data[i] = data.hum[i];}
-            day_humIndex = data.humIndex;
-            for(i=0; i<data.tempIndex; i++)
-                {day_temperature_data[i] = data.temp[i];}
-            day_tempIndex = data.tempIndex;
-        }
-
-        else if(data.message === "weekData")
-        {
-            for (i=0; i < data.humIndex; i++) 
-                {week_humidity_data[i] = data.hum[i];}
-            week_humIndex = data.humIndex;
-            for (i=0; i < data.tempIndex; i++) 
-                {week_temperature_data[i] = data.temp[i];}
-            week_tempIndex = data.tempIndex;
-        }
-    });
-
-    setTimeout(() => 
-    {
-            new Promise(resolve => setTimeout(resolve, 500));
-            $("#loading_screen").hide();
-    }, 2000);
-
+    $("#loading_screen").hide();
 });
