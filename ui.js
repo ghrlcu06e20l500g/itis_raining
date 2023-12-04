@@ -4,7 +4,7 @@
 */
 
 
-function update() {
+async function update() {
     $("#loading_screen").show();
 
     if($("#nav_week").hasClass("selected")) {
@@ -19,6 +19,7 @@ function update() {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
+
     $("#nav_day").click(() => day(selected_date));
     $("#nav_week").click(() => week());
     
@@ -27,13 +28,15 @@ document.addEventListener("DOMContentLoaded", async function() {
     $("#settings").hide();
 
     $("#date").val(currentDate.toISOString().split("T")[0]);
-    $("#date").on("change", function() {
+    $("#date").on("change", async function() {
         currentDate = new Date($(this).val());
-        update();
+        await update();
     });
 
-    update();
-    setInterval(update, 1000 * 60 * 30);
+    await update();
+    setInterval(async () => {
+        await update();
+    }, 1000 * 60 * 30);
     
     $("#loading_screen").hide();
 });

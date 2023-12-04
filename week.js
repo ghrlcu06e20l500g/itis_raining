@@ -14,7 +14,7 @@ function week() {
         >
             <div id="day_weekday">${weekDays[currentWeek[i].getDay()]}</div>
             <div id="day_date">${currentWeek[i].getDate()}${suffix(currentWeek[i])} of ${months[currentWeek[i].getMonth()]}</div>
-            <div id="day_temperature">${currentData.temperatues[i]}°C</div>
+            <div id="day_temperature">${currentData.temperatures[i]}°C</div>
             <div id="day_humidity">${currentData.humidities[i]}%H</div>
         </div>
     `;
@@ -30,14 +30,14 @@ function week() {
     $("#days > div").click(() => day(new Date()));
 
     try {
-        if(currentData.temperatues.some(element => element == null)) throw(new Error("Found null temperature data."));
+        if(currentData.temperatures.some(element => element == null)) throw(new Error("Found null temperature data."));
         new Chart($("#temperature_chart")[0].getContext("2d"), {
             type: "line",
             data: {
                 labels: currentWeek.map(date => weekDays[date.getDay()]),
                 datasets: [{
                     label: "Temperature",
-                    data: currentData.temperatues,
+                    data: currentData.temperatures,
                     borderColor: "rgba(75, 192, 192, 1)",
                     borderWidth: 2,
                     fill: false
