@@ -1,12 +1,36 @@
-function day(date) {
+function day() {
     $("#nav_week").removeClass("selected");
     $("#nav_day").addClass("selected");
     
     $("main").html( /* html */ `
-        <div>${date.toString()}</div>
-        <canvas id="temperature_chart"></canvas>
-        <canvas id="humidity_chart"></canvas>
+        <div id="charts">
+            <canvas id="temperature_chart"></canvas>
+            <canvas id="humidity_chart"></canvas>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Weather</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${hours.map(function(value) {
+                    return /* html */ `
+                        <tr>
+                            <td>${value}</td>
+                            <td>${"Sunny"}</td>
+                            <td>${30}</td>
+                            <td>${50}</td>
+                        </tr>
+                    `;
+                }).join('')}
+            </tbody>
+        </table>
     `);
+    /*
     try {
         if(currentData.temperatures.some(element => element == null)) throw(new Error("Found null temperature data."));
         new Chart($("#temperature_chart")[0].getContext("2d"), {
@@ -71,4 +95,5 @@ function day(date) {
     } catch(error) {
         console.error(`Unable to load day graphs: ${error.message}`);
     }
+    */
 }

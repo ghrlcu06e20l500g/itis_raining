@@ -1,4 +1,6 @@
-var dataUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61034&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
+const apiDataUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61034&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
+
+/*
 var i;
 var forecast_conditions =
     [
@@ -21,7 +23,7 @@ var forecast_conditions =
     ];
 
 function getPrevision() {
-    fetch(dataUrl)
+    fetch(apiDataUrl)
         .then(response => {
             if (!response.ok)
                 throw new Error("Something went wrong");
@@ -42,3 +44,8 @@ function getForecastData(response) {
         forecast_conditions[i]["hum"] = response.locations["Urbino,PU,61034"].values[i].humidity;
     }
 }
+*/
+function getForecastWeekData() {}
+function getForcastDayData() {}
+function getPastWeekWeather() {}
+function getPastDayWeather() {}

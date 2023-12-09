@@ -1,26 +1,19 @@
-/* 
-    DA FARE:
-        UPDATE OGNI 30 MIN VERIFICANDO L'ORARIO DEL MOMENTO 
-*/
-
-
 async function update() {
     $("#loading_screen").show();
 
     if($("#nav_week").hasClass("selected")) {
-        currentData = getWeekData();
+        await getWeekData();
         week();
     } else {
-        currentData = getDayData();
+        await getDayData();
         day();
-    };
+    }
     
     $("#loading_screen").hide();
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
-
-    $("#nav_day").click(() => day(selected_date));
+    $("#nav_day").click(() => day());
     $("#nav_week").click(() => week());
     
     $("#settings_button").click(() => $("#settings").toggle());
@@ -34,9 +27,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     });
 
     await update();
-    setInterval(async () => {
-        await update();
-    }, 1000 * 60 * 30);
+    setInterval(await update(), 1000 * 60 * 30);
     
     $("#loading_screen").hide();
 });
