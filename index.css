@@ -211,6 +211,9 @@ body {
         }
 
 @media (max-width: 767px) {
+    h1 {
+        font-size: 100%;
+    }
     #days {
         flex-direction: column;
     }
