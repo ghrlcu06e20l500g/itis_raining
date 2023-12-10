@@ -9,24 +9,46 @@ body {
         display: flex;
         flex-direction: row;
         background-color: skyblue;
+        padding-left: 5px;
     }
         header > * {
+            background-color: lightgray;
+            margin: 5px 5px 5px 0px;
             padding: 5px;
+            border-radius: 5px;
         }
         header img {
+            justify-self: flex-start;
             image-rendering: pixelated;
+            width: 75px;
         }
         h1 {
-            flex: 1;
+            justify-self: flex-start;
+            margin-right: auto;
+            text-align: center;
         }
         #date {
-            flex: 1;
-            width: 100%;
+            justify-self: center;
             border: none;
+            outline: none;
         }
+            #date:hover {
+                border: 2.5px solid black;
+                transition: border 0.1s;
+                cursor: pointer;
+            }
         #settings_button {
+            justify-self: flex-end;
             border: none;     
         }
+            #settings_button img {
+                image-rendering: pixelated;
+            }
+            #settings_button:hover {
+                border: 2.5px solid black;
+                cursor: pointer;
+                transition: border 0.1s;
+            }
     nav {
         display: flex;
         flex-direction: row;
@@ -158,7 +180,6 @@ body {
         background-color: rgba(0, 0, 0, 0.75);
         color: white;
         padding: 5px;
-        border-radius: 5px;
     }
         #error_title {
             font-size: 200%;
