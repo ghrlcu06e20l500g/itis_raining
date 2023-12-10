@@ -7,28 +7,30 @@ function day() {
             <canvas id="temperature_chart"></canvas>
             <canvas id="humidity_chart"></canvas>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Weather</th>
-                    <th>Temperature</th>
-                    <th>Humidity</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${hours.map(function(value) {
-                    return /* html */ `
-                        <tr>
-                            <td>${value}</td>
-                            <td>${"Sunny"}</td>
-                            <td>${30}</td>
-                            <td>${50}</td>
-                        </tr>
-                    `;
-                }).join('')}
-            </tbody>
-        </table>
+        <div id="table_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Weather</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${hours.map(function(value) {
+                        return /* html */ `
+                            <tr>
+                                <td>${value}</td>
+                                <td>${"Sunny"}</td>
+                                <td>${30}</td>
+                                <td>${50}</td>
+                            </tr>
+                        `;
+                    }).join('')}
+                </tbody>
+            </table>
+        </div>
     `);
     /*
     try {

@@ -14,7 +14,7 @@ function week() {
             data-date=${currentWeek[i].toISOString()}
         >   
             <div id="day_weekday">${weekDays[currentWeek[i].getDay()]}</div>
-            <div id="day_date">${currentWeek[i].getDate()}${suffix(currentWeek[i])} of ${months[currentWeek[i].getMonth()]}</div>
+            <div id="day_date">${months[currentWeek[i].getMonth()]} ${currentWeek[i].getDate()}${suffix(currentWeek[i])}</div>
             <div id="day_temperature">${currentData.temperatures[i]}°C</div>
             <div id="day_humidity">${currentData.humidities[i]}%H</div>
         </div>

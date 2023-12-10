@@ -24,6 +24,9 @@ async function getServerDayData() {
         })
         .catch(error => {
             console.error(`Error in fetching server data: ${error}`);
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 0);
             $("#error").css("display", "flex");
         });
 }
