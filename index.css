@@ -209,3 +209,12 @@ body {
         #error_title {
             font-size: 200%;
         }
+
+@media (max-width: 767px) {
+    #days {
+        flex-direction: column;
+    }
+    #charts {
+        flex-direction: column;
+    }
+}
