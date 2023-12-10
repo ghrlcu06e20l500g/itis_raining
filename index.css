@@ -97,9 +97,12 @@ body {
                 border-radius: 5px;
                 min-height: 300px;
                 padding: 5px;
+
                 background-image: url("images/backgrounds/cloudy.png");
-                background-size: 100% auto;
-                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                overflow: hidden;
+                
                 filter: brightness(0.75);
                 transition: flex 1s;
                 color: white;

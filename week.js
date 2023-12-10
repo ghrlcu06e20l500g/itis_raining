@@ -9,7 +9,7 @@ function week() {
     
     for(let i = 0; i < currentWeek.length; i++) daysHtml += /* html */ `
         <div ${areDatesEqual(currentWeek[i], today)? 'class="current"' : ""}
-            style="background-image: url('images/backgrounds/${"cloudy"}.png');"
+            style="background-image: url('images/backgrounds/${"sunny"}.png');"
             title="Click to view day"
             data-date=${currentWeek[i].toISOString()}
         >   
