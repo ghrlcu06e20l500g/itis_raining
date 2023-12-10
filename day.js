@@ -4,8 +4,8 @@ function day() {
     
     $("main").html( /* html */ `
         <div id="charts">
-            <canvas id="temperature_chart"></canvas>
-            <canvas id="humidity_chart"></canvas>
+            <canvas id="temperature_chart" title="Chart of day temperature"></canvas>
+            <canvas id="humidity_chart" title="Chart of day humidity"></canvas>
         </div>
         <div id="table_container">
             <table>

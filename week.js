@@ -23,8 +23,8 @@ function week() {
     $("main").html( /* html */ `
         <div id="days">${daysHtml}</div>
         <div id="charts">
-            <canvas id="temperature_chart"></canvas>
-            <canvas id="humidity_chart"></canvas>
+            <canvas id="temperature_chart" title="Chart of week temperature"></canvas>
+            <canvas id="humidity_chart" title="Chart of week humidity"></canvas>
         </div>
     `);
     $("main").css({
