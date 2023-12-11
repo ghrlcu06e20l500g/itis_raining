@@ -1,6 +1,11 @@
 async function update() {
     $("#loading_screen").show();
 
+    var today = new Date();
+    var sixDaysLater = new Date();
+    sixDaysLater.setDate(today.getDate() + 6);
+    $("#date").attr("max", sixDaysLater.toISOString().split("T")[0]);
+
     if($("#nav_week").hasClass("selected")) {
         await getWeekData();
         week();
