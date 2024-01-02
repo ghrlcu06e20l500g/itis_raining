@@ -107,6 +107,8 @@ body {
                 color: white;
                 display: flex;
                 flex-direction: column;
+
+                text-shadow: 1px 1px 0px rgb(0, 0, 0);
             }
                 #days > div.current {
                     font-weight: bold;
