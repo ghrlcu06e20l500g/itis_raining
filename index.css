@@ -98,13 +98,11 @@ body {
                 min-height: 300px;
                 padding: 5px;
 
-                background-image: url("images/backgrounds/cloudy.png");
                 background-size: cover;
                 background-position: center;
 
                 overflow: hidden;
 
-                filter: brightness(0.75);
                 transition: flex 1s;
                 color: white;
                 display: flex;
@@ -114,6 +112,7 @@ body {
                     font-weight: bold;
                     font-style: italic;
                     font-size: 150%;
+                    color: white;
                 }
                 #days > div:hover {
                     flex: 1.25;
