@@ -6,22 +6,22 @@ async function getWeekData() {
 
     var isWeekHistoric = false;
     var firstForecastIndex = null;
-    
+
     for(var i = 0; i < 7; i++) {
         if(currentWeek[i] < new Date()) {
             currentData[i].temperatures = serverWeek.temperatures[i];
             currentData[i].humidities = serverWeek.humidities[i];
-            // get weather from history.js
         } else {
             if(!isWeekHistoric) {
-                weekHistoric = true;
+                isWeekHistoric = true;
                 firstForecastIndex = i;
             }
             for(var j = 0; j < forecastData.dates.length; j++) {
-                if(date.equals(addDays(new Date[i], i - firstForecastIndex))) {
-                    currentData[i].temperatures = forecastData.temperatures[i];
-                    currentData[i].humidities = forecastData.humidities[i];
-                    currentData[i].weather = forecastData.weather[i];
+                // Adjusted the index used for addDays
+                if(date.equals(addDays(new Date(), i - firstForecastIndex))) {
+                    currentData[i].temperatures = forecastData.temperatures[j];
+                    currentData[i].humidities = forecastData.humidities[j];
+                    currentData[i].weather = forecastData.weather[j];
                 }
             }
         }
