@@ -5,9 +5,11 @@
 - **main.js**<br>
     Declaration of currentData and currentDate.
 - **serverData.js**<br>
-    Functions to interact with the server.
+    Get past data of days and hours.
 - **apiData.js**<br>
-    Function to interact with the API.
+    Store future data of days and hours.
+- **history.js**<br>
+    Get weather of past days and hours.
 - **data.js**<br>
     Logic for choosing between server and API.
 - **week.js**<br>
@@ -22,8 +24,10 @@ Here is a graph of the file relations, excluding util.js.
     flowchart
     main.js --> serverData.js
     main.js --> apiData.js
+    main.js --> history.js
     serverData.js --> data.js
     apiData.js --> data.js
+    history.js --> data.js
     week.js --> ui.js
     data.js --> ui.js
     day.js --> ui.js
