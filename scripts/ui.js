@@ -18,6 +18,8 @@ async function update() {
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
+    await updateForecastData();
+    
     $("#nav_day").click(() => day());
     $("#nav_week").click(() => week());
     

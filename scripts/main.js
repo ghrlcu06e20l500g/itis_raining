@@ -1,7 +1,12 @@
 var currentData = {
     temperatures: [],
     humidities: [],
-    temperatureIndex: 0,
-    humidityIndex: 0
+    weather: []
+};
+var forecastData = {
+    dates: [],
+    temperatures: [],
+    humidities: [],
+    weather: []
 };
 var currentDate = new Date();
