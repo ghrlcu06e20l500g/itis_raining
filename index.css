@@ -1,247 +1,200 @@
-body {
+body:not(body *) {
+    --logoyellow: #dbae00;
+    --logoyellowlight: #ffce0f;
+    --logoblue: #183973;
+    --logobluelight: #214e9d;
+
     display: flex;
     flex-direction: column;
+
     margin: 0px;
+
     min-height: 100vh;
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
+
+    font-family: monospace;
+    font-size: 120%;
 }
+    .interactable {
+        margin: 5px;
+        border: 2px solid var(--logoyellow);
+        border-radius: 5px;
+        padding: 5px;
+        transition: transform 0.1s;
+    }
+        .interactable:hover {
+            transform: rotate(5deg);
+            border: 2px solid black;
+            cursor: pointer;
+        }
     header {
         display: flex;
         flex-direction: row;
-        background-color: skyblue;
-        padding-left: 5px;
+
         align-items: center;
+
+        background-color: var(--logoblue);
     }
-        header > * {
-            background-color: white;
-            margin: 5px 5px 5px 0px;
-            padding: 5px;
-            border-radius: 5px;
-        }
-        header img {
-            justify-self: flex-start;
+        header > img {
             image-rendering: pixelated;
-            width: 75px;
+
+            height: 60px;
+            width: 60px;
+
+            margin: 0px 10px 0px 10px;
+            border: 2px solid var(--logoyellow);
+            border-radius: 5px;
+
+            background-color: white;
         }
-        h1 {
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 300%;
-            justify-self: flex-start;
-            margin-right: auto;
-            text-align: center;
+        header > h1 {
+            flex: 1;
+            transition: transform 0.1s;
+
+            color: white;
         }
-        #date {
-            justify-self: center;
-            font-size: 120%;
-            border: none;
-            outline: none;
-        }
-            #date:hover {
-                border: 2.5px solid gray;
-                transition: border 0.1s;
-                cursor: pointer;
+            header > h1:hover {
+                transform: rotate(2deg);
             }
         #settings_button {
-            justify-self: flex-end;
-            border: none;     
+            margin-right: 15px;
         }
-            #settings_button img {
-                width: 25px;
-                height: 25px;
+            #settings_button > img {
                 image-rendering: pixelated;
-            }
-            #settings_button:hover {
-                border: 2.5px solid gray;
-                cursor: pointer;
-                transition: border 0.1s;
+                height: 30px;
+                width: 30px;
             }
     nav {
         display: flex;
         flex-direction: row;
-        background-color: gray;
+
+        background-color: var(--logobluelight);
     }
-        nav div {
+        nav > div {
             flex: 1;
+            background-color: white;
             text-align: center;
-            cursor: pointer;
-            transition: border-bottom 0.1s;
         }
-            nav > div.selected {
-                border-bottom: solid 5px #1e3c72;
+            nav > div:hover {
+                transform: rotate(2deg);
             }
     main {
         flex: 1;
+
+        display: flex;
+        flex-direction: column;
     }
-        #charts {
-            display: flex;
-            flex-direction: row;
-            margin-right: 5px;
-        }
-        #charts canvas {
-            flex: 1;
-            margin: 5px 0px 5px 5px;
-            background-color: lightgray;
-            border-radius: 5px;
-        }
-    /* week */
-        #days {
-            display: flex;
-            flex-direction: row;
-            margin-right: 5px;
-        }
-            #days > div {
+        /* forecast */
+            #days {
                 flex: 1;
-                margin: 5px 0px 5px 5px;
-                border-radius: 5px;
-                min-height: 300px;
-                padding: 5px;
 
-                background-size: cover;
-                background-position: center;
-
-                overflow: hidden;
-
-                transition: flex 1s;
-                color: white;
                 display: flex;
                 flex-direction: column;
             }
-                #days > div.current {
-                    font-weight: bold;
-                    font-style: italic;
-                    font-size: 150%;
-                    color: white;
-                }
-                #days > div:hover {
-                    flex: 1.25;
-                    border: 2.5px solid gray;
-                    cursor: pointer;
-                }
-                #day_date {
+                #days > div {
                     flex: 1;
+                    display: flex;
+                    flex-direction: row;
+                    
+                    padding: 0px 10px 0px 10px;
+                    align-items: center;
+                    
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
                 }
-                #day_temperature {
-                    align-self: flex-end;
-                }
-                #day_humidity {
-                    align-self: flex-end;
-                }
-    /* day */
-        #table_container {
-            display: flex;
-            flex-direction: row;
-        }
-            table {
-                flex: 1;
-                margin: 0px 5px 5px 5px;
-            }
-                th {
-                    background-color: skyblue;
-                }
-                td {
-                    background-color: lightgray;
-                }
-                    td:hover {
-                        height: 50px;
-                        transition: height 1s;
+                    #days > div.current {
+                        font-weight: bolder;
+                        font-style: italic;
                     }
-    footer {
-        padding: 5px;
-        background-color: skyblue;
+                    #days > div > div {
+                        flex: 1;
+                        padding: 0px 10px 0px 10px;
+                    }
+        /* history */
+            #date {
+                align-self: flex-start;
+            }
+            #charts {
+                display: flex;
+                flex-direction: row;
+            }
+            #charts > canvas {
+                width: 50% !important;
+                height: 50% !important;
+            }
+    footer a {
         display: flex;
         flex-direction: row;
-        justify-content: space-between; 
-    }
-    #settings {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(5px);
+        justify-content: space-between;
+        background-color: var(--logoblue);
+        padding: 5px;
         color: white;
-        padding: 5px 10px 5px 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; 
-    }   
-        #settings * {
-            padding: 5px;
+        text-decoration: none;
+    }
+    /* overlays */
+        #settings {
+            position: absolute;
+            z-index: 1;
+
+            display: none;
+            flex-direction: column;
+
+            height: calc(100% - 20px);
+            width: calc(100% - 20px);
+
+            padding: 10px;
+
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+
+            color: white;
         }
             #settings_header {
                 display: flex;
                 flex-direction: row;
-            }
-                #settings_title {
-                    flex: 1;
-                }
-            #settings select {
-                border: none;
-                border-radius: 5px;
-            }
-                #settings select:hover {
-                    border: 2.5px solid gray;
-                    transition: border 0.1s;
-                    cursor: pointer;
-                }
-            #settings button {
-                padding: 0px 10px 0px 10px;
-                border: none;
-                border-radius: 5px;
-            }
-                #settings button:hover {
-                    border: 2.5px solid gray;
-                    transition: border 0.1s;
-                    cursor: pointer;
-                }
-    #loading_screen {
-        position: absolute;
-        background-color: gray;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; 
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }   
-        #loading_screen * {
-            padding: 5px;
-        }
-        #loading_screen img {
-            image-rendering: pixelated;
-            width: 200px;
-            height: 200px;
-        }
-    #error {
-        position: fixed;
-        display: flex;
-        visibility: hidden;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; 
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        background-color: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(5px);
-        color: white;
-        padding: 5px;
-    }
-        #error_title {
-            font-size: 200%;
-        }
 
-@media (max-width: 767px) {
-    h1 {
-        font-size: 100%;
-    }
-    #days {
-        flex-direction: column;
-    }
+                align-items: center;
+
+                margin-bottom: 5px;
+            }
+                #settings_close_button {
+                    margin-right: 5px;
+                }
+            #settings select:hover {
+                transform: rotate(0deg);
+            }
+        #loading_screen {
+            position: absolute;
+            z-index: 2;
+        
+            display: flex;
+            flex-direction: column;
+        
+            align-items: center;
+            justify-content: center;
+        
+            height: calc(100% - 20px);
+            width: calc(100% - 20px);
+        
+            padding: 10px;
+        
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+        
+            color: white;
+        }
+            #loading_screen > img {
+                image-rendering: pixelated;
+                width: 500px;
+                height: 500px;
+            }
+
+@media only screen and (max-width: 1080px) {
     #charts {
         flex-direction: column;
     }
+        #charts > canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
 }

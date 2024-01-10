@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="theme-color" content="#ff0000">
+        <meta name="theme-color" content="#dbae00">
         <meta name="description" content="Weather app for ITIS E.Mattei Urbino">
         <meta name="keywords" content="weather, ITIS E.Mattei, Urbino">
         <meta name="author" content="Gianluca Galanti, Luca Ghironzi">
@@ -14,51 +14,38 @@
         <link rel="stylesheet" type="text/css" href="index.css">
         <link rel="icon" type="image/icon" href="images/logo.png">
 
-        <title>ITIS Raining</title>
+        <title>ITIS_Raining</title>
     </head>
     <body>
         <header>
             <img src="images/logo.png" title="ITIS Raining">
-            <h1 title="ITIS Raining">ITIS Raining</h1>
-            <input type="date" id="date" min="2023-01-01" title="Click to select a date">
-            <button id="settings_button" title="Click to view settings">
+            <h1 title="ITIS_Raining">ITIS_Raining</h1>
+            <button id="settings_button" class="interactable" title="Click to view settings">
                 <img src="images/settings.png">
             </button>
         </header>
         <nav>
-            <div id="nav_week" class="selected" title = "Click to view week">Week</div>
-            <div id="nav_day" title = "Click to view day">Day</div>
+            <div id="nav_forecast" class="interactable" title="Click to view past data">Forecast</div>
+            <div id="nav_history" class="interactable" title="Click to view current and future data">History</div>
         </nav>
         <main></main>
-        <footer title="Made at ITIS E.Mattei Urbino 2023/2024 by Gianluca Galanti and Luca Ghironzi">
-            <div>ITIS E.Mattei Urbino 2023/2024</div>
-            <div>Gianluca Galanti, Luca Ghironzi</div>
+        <footer>
+            <a href="https://github.com/ghrlcu06e20l500g/itis_raining" title="Click to view GitHub repository">
+                <div>ITIS E.Mattei Urbino 2023/2024</div>
+                <div>Gianluca Galanti, Luca Ghironzi</div>
+            </a>
         </footer>
         <div id="settings" title="Settings">
             <div id="settings_header">
+                <button id="settings_close_button" class="interactable" title="Click to hide settings">X</button>
                 <div id="settings_title">Settings</div>
-                <button id="settings_close_button" title="Click to hide settings">X</button>
             </div>
-            <div>Language</div>
-            <select id="langauge_select" title="Click to select a language">
-                <option>ENG</option>
-                <option>ITA</option>
-            </select>
             <div>Degree unit</div>
-            <select id="degree_select" title="Click to select a degree unit">
+            <select id="degree_select" class="interactable" title="Click to select a degree unit">
                 <option>C</option>
                 <option>F</option>
                 <option>K</option>
             </select>
-            <div>First week day</div>
-            <select id="first_day" title="Click to select the first day of the week">
-                <option>Monday</option>
-                <option>Sunday</option>
-            </select>
-        </div>
-        <div id="error" title="Error: cannot connect to server">
-            <div id="error_title">ERROR</div>
-            <div id="error_data" >Nothing is wrong actually???</div>
         </div>
         <div id="loading_screen" title="Loading...">
             <img src="images/sunloading.gif">
@@ -66,16 +53,9 @@
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>      
         
-        <script src="scripts//util.js"></script>
-        <script src="scripts//main.js"></script>
-        <script src="scripts//serverData.js"></script>
-        <script src="scripts//apiData.js"></script>
-        <script src="scripts//history.js"></script>
-        <script src="scripts//data.js"></script>
-        <script src="scripts//week.js"></script>
-        <script src="scripts//day.js"></script>
-        <script src="scripts//ui.js"></script>
+        <script src="data.js"></script>
+        <script src="index.js"></script>
     </body>
 </html>
