@@ -67,7 +67,7 @@ async function updateForecastData() {
         });
 }
 async function updateHistoryData(selectedDate) {
-    return fetch(serverDataUrl)
+    return fetch(historyUrl)
         .then(function(response) {
             if(!response.ok) throw new Error();
             return response.json();
