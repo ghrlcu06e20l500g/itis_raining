@@ -47,8 +47,7 @@ const forecastUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWe
 const historyUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
 
 async function updateForecastData() {
-    return new Promise(function(resolve, reject) {
-        fetch(forecastUrl)
+    return fetch(forecastUrl)
         .then(function(response) {
             if(!response.ok) throw new Error();
             else return response.json();
@@ -66,32 +65,29 @@ async function updateForecastData() {
             $("#error_data").html(error.toString());
             $("#error").show();
         });
-    });
 }
 async function updateHistoryData(selectedDate) {
-    return new Promise(function(resolve, reject) {
-        fetch(serverDataUrl)
-            .then(function(response) {
-                if(!response.ok) throw new Error();
-                return response.json();
-            })
-            .then(function(response) {
-                var i = 0;
-                do {
-                    var currentResponse = response.pop();
-                    var dataDay = currentResponse["data_ora"].slice(8, 10);
-                    
-                    historyData[i].date = currentResponse["data_ora"];
-                    if(currentResponse.tipo == "UMIDITA") historyData[i].humidity = currentResponse['valore'];
-                    else if(currentResponse.tipo == "TEMPERATURA") historyData[i].temperature = currentResponse['valore'];
-                    i++;
-                } while(dataDay == selectedDate.toString().slice(8, 10));
-            })
-            .catch(function(error) {
-                console.error(error);
-                $("#error_data").html(error.toString());
-                $("#error").show();
-            });
-    });
+    return fetch(serverDataUrl)
+        .then(function(response) {
+            if(!response.ok) throw new Error();
+            return response.json();
+        })
+        .then(function(response) {
+            var i = 0;
+            do {
+                var currentResponse = response.pop();
+                var dataDay = currentResponse["data_ora"].slice(8, 10);
+                
+                historyData[i].date = currentResponse["data_ora"];
+                if(currentResponse.tipo == "UMIDITA") historyData[i].humidity = currentResponse['valore'];
+                else if(currentResponse.tipo == "TEMPERATURA") historyData[i].temperature = currentResponse['valore'];
+                i++;
+            } while(dataDay == selectedDate.toString().slice(8, 10));
+        })
+        .catch(function(error) {
+            console.error(error);
+            $("#error_data").html(error.toString());
+            $("#error").show();
+        });
 }
 
