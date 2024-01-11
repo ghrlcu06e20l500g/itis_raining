@@ -12,6 +12,10 @@ async function showForecast() {
     $("#nav_history").removeClass("selected");
     $("#nav_forecast").addClass("selected");
 
+    // non so perché ieri va ma oggi no per settare .current però ok.
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
     var days = "";
     for(day of forecastData) {
         var temp = "";
@@ -29,7 +33,7 @@ async function showForecast() {
         days += /* html */ `
             <div 
                 style="background-image: url('images/backgrounds/${day.weather}.png');"
-                class="${(day.date.toISOString().split('T')[0] == new Date().toISOString().split('T')[0])? 'current' : ''}"
+                class="${(day.date.toISOString().split('T')[0] == yesterday.toISOString().split('T')[0])? 'current' : ''}"
             >
                 <div weekday>${weekdays[day.date.getDay()]}</div>
                 <div date>${day.date.toISOString().split('T')[0]}</div>
