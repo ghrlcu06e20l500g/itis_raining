@@ -7,7 +7,7 @@ const hours = [
 function showForecast() {
     $("#loading_screen").show();
 
-    updateForecastData();
+    await updateForecastData();
 
     $("#nav_history").removeClass("selected");
     $("#nav_forecast").addClass("selected");
@@ -51,7 +51,7 @@ var selectedDate = null;
 function showHistory() {
     $("#loading_screen").show();
 
-    updateHistoryData(selectedDate);
+    await updateHistoryData(selectedDate);
 
     $("#nav_forecast").removeClass("selected");
     $("#nav_history").addClass("selected");

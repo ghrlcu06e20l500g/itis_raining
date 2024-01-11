@@ -46,7 +46,7 @@ var historyData = [
 const forecastUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61029&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
 const historyUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
 
-function updateForecastData() {
+async function updateForecastData() {
     return new Promise(function(resolve, reject) {
         fetch(forecastUrl)
         .then(function(response) {
@@ -68,7 +68,7 @@ function updateForecastData() {
         });
     });
 }
-function updateHistoryData(selectedDate) {
+async function updateHistoryData(selectedDate) {
     return new Promise(function(resolve, reject) {
         fetch(serverDataUrl)
             .then(function(response) {
