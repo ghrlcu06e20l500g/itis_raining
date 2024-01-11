@@ -105,6 +105,7 @@ body:not(body *) {
                     #days > div.current {
                         font-weight: bolder;
                         font-style: italic;
+                        text-decoration: underline;
                     }
                     #days > div > div {
                         flex: 1;
