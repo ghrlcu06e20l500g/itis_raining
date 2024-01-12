@@ -78,7 +78,7 @@ async function updateHistoryData(selectedDate) {
                 for(measurement of response) {
                     console.log(measurement.valore);
                     if(measurement.tipo == "TEMPERATURA") temperature += measurement.valore;
-                    else if(measurement.tipo == "TEMPERATURA") humidity += measurement.valore;
+                    else if(measurement.tipo == "UMIDITA") humidity += measurement.valore;
                 }
                 historyData[i].temperature = temperature / 6;
                 historyData[i].humidity = humidity / 6;
