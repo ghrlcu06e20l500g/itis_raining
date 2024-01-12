@@ -75,6 +75,7 @@ async function updateHistoryData(selectedDate) {
                 var temperature = 0;
                 var humidity = 0;
                 for(measurement of response) {
+                    console.log(measurement.valore);
                     if(measurement.tipo == "TEMPERATURA") temperature += measurement.valore;
                     else if(measurement.tipo == "TEMPERATURA") humidity += measurement.valore;
                 }
