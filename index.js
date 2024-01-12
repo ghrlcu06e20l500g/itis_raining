@@ -51,7 +51,7 @@ async function showForecast() {
     $("#loading_screen").hide();
 }
 
-var selectedDate = new Date();
+var selectedDate = null;
 async function showHistory() {
     $("#loading_screen").show();
 
