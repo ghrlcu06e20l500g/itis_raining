@@ -130,20 +130,27 @@ async function showHistory() {
     $("#date").change(function() {
         selectedDate = new Date($(this).val());
         showHistory();
+        showHistory();
     });
 
     $("#loading_screen").hide();
 }
 
 $("#nav_forecast").click(() => showForecast());
-$("#nav_history").click(() => showHistory());
+$("#nav_history").click(() => {
+    showHistory();
+    showHistory();
+});
 
 $("#settings_button").click(() => $("#settings").css("display", "flex"));
 $("#settings_close_button").click(() => $("#settings").hide());
 
 $("#degree_select").change(function() {
     if($("#nav_forecast").hasClass("selected")) showForecast();
-    else showHistory();
+    else {
+        showHistory();
+        showHistory();
+    }
 });
 $("header h1").click(() => alert("Ciao!"));
 
