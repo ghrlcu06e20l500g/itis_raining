@@ -22,7 +22,7 @@ async function showForecast() {
                 temp = `${((day.temperature * 9/5) + 32).toFixed(1)}°F`;
                 break;
             case "K":
-                temp = `${(day.temperature + 273.152)().toFixed(1)}°K`;
+                temp = `${(day.temperature + 273.152).toFixed(1)}°K`;
                 break;
             default:
                 temp = `${day.temperature.toFixed(1)}°C`;
