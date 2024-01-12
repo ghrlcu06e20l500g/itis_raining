@@ -85,7 +85,7 @@ async function updateHistoryData(selectedDate) {
                             temperatureCount++;
                         } else if(measurement.tipo == "UMIDITA") {
                             humidity += measurement.valore;
-                            humidityratureCount++;
+                            humidityCount++;
                         }
                     }
                     historyData[index].temperature = temperature / temperatureCount;
