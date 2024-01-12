@@ -55,15 +55,15 @@ var selectedDate = null;
 async function showHistory() {
     $("#loading_screen").show();
 
-    await updateHistoryData(selectedDate);
-
-    $("#nav_forecast").removeClass("selected");
-    $("#nav_history").addClass("selected");
-
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     if(selectedDate == null) selectedDate = yesterday;
+
+    await updateHistoryData(selectedDate);
     
+    $("#nav_forecast").removeClass("selected");
+    $("#nav_history").addClass("selected");
+
     $("main").html(/* html */ `
         <input type="date" id="date" class="interactable" min="2023-01-01" title="Click to select a date"
             max="${yesterday.toISOString().split('T')[0]}" 
