@@ -56,7 +56,7 @@ async function showHistory() {
     $("#loading_screen").show();
 
     await updateHistoryData(selectedDate);
-    setTimeout(1000);
+
     $("#nav_forecast").removeClass("selected");
     $("#nav_history").addClass("selected");
 
@@ -128,7 +128,7 @@ async function showHistory() {
             }
         }
     });
-    
+
     $("#date").change(function() {
         selectedDate = new Date($(this).val());
         showHistory();
