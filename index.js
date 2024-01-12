@@ -50,6 +50,8 @@ async function showForecast() {
 var selectedDate = new Date();
 selectedDate.setDate(selectedDate.getDate() - 1);
 
+var temperatureChart;
+var humidityChart;
 async function showHistory() {
     $("#loading_screen").show();
 
@@ -71,7 +73,7 @@ async function showHistory() {
         </div>
     `);
 
-    new Chart($("#temperature_chart")[0].getContext("2d"), {
+    temperatureChart = new Chart($("#temperature_chart")[0].getContext("2d"), {
         type: "line",
         data: {
             labels: hours,
@@ -103,7 +105,7 @@ async function showHistory() {
             }
         }
     });
-    new Chart($("#humidity_chart")[0].getContext("2d"), {
+    humidityChart = new Chart($("#humidity_chart")[0].getContext("2d"), {
         type: "line",
         data: {
             labels: hours,
@@ -130,16 +132,16 @@ async function showHistory() {
     $("#date").change(function() {
         selectedDate = new Date($(this).val());
         showHistory();
-        showHistory();
     });
 
     $("#loading_screen").hide();
 }
 
 $("#nav_forecast").click(() => showForecast());
-$("#nav_history").click(async () => {
-    await showHistory();
-    await showHistory();
+$("#nav_history").click(() => {
+    showHistory();
+    temperatureChart.update();
+    humidityChart.update();
 });
 
 $("#settings_button").click(() => $("#settings").css("display", "flex"));
@@ -147,10 +149,7 @@ $("#settings_close_button").click(() => $("#settings").hide());
 
 $("#degree_select").change(function() {
     if($("#nav_forecast").hasClass("selected")) showForecast();
-    else {
-        showHistory();
-        showHistory();
-    }
+    else showHistory();
 });
 $("header h1").click(() => alert("Ciao!"));
 
