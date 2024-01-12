@@ -11,8 +11,7 @@ async function showForecast() {
 
     $("#nav_history").removeClass("selected");
     $("#nav_forecast").addClass("selected");
-    // DEBUG
-    console.log(weekdays[new Date().getDay()])
+
     var days = "";
     for(day of forecastData) {
         var temp = "";
@@ -48,13 +47,11 @@ async function showForecast() {
     $("#loading_screen").hide();
 }
 
-var selectedDate = null;
+var selectedDate = new Date();
+selectedDate.setDate(selectedDate.getDate() - 1);
+
 async function showHistory() {
     $("#loading_screen").show();
-
-    var yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    if(selectedDate == null) selectedDate = yesterday;
 
     await updateHistoryData(selectedDate);
     
