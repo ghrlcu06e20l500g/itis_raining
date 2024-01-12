@@ -32,7 +32,7 @@ async function showForecast() {
         }
         days += /* html */ `
             <div 
-                style="background-image: url('images/backgrounds/${day.weather.split(",")[0]}.png');"
+                style="background-image: url('images/backgrounds/${day.weather.split(",")[0].split(" ")[0]}.png');"
                 class="${(day.date.toISOString().split('T')[0] == yesterday.toISOString().split('T')[0])? 'current' : ''}"
             >
                 <div weekday>${weekdays[day.date.getDay()]}</div>
