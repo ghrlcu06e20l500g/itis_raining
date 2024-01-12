@@ -21,13 +21,13 @@ async function showForecast() {
         var temp = "";
         switch($("#degree_select").val()) {
             case "F":
-                temp = `${(day.temperature * 9/5) + 32}°F`;
+                temp = `${((day.temperature * 9/5) + 32).toFixed(1)}°F`;
                 break;
             case "K":
-                temp = `${day.temperature + 273.152}°K`;
+                temp = `${(day.temperature + 273.152)().toFixed(1)}°K`;
                 break;
             default:
-                temp = `${day.temperature}°C`;
+                temp = `${day.temperature.toFixed(1)}°C`;
                 break;
         }
         days += /* html */ `
@@ -38,7 +38,7 @@ async function showForecast() {
                 <div weekday>${weekdays[day.date.getDay()]}</div>
                 <div date>${day.date.toISOString().split('T')[0]}</div>
                 <div weather>${day.weather.split(",")[0]}</div>
-                <div temperature>${temp.toFixed(1)}</div>
+                <div temperature>${temp}</div>
                 <div humidity>${day.humidity.toFixed(1)}%H</div>
             </div>
         `;
