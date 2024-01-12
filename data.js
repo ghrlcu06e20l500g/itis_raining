@@ -53,7 +53,7 @@ async function updateForecastData() {
         })
         .then(function(response) {
             for(var i = 0; i < 16; i++) {
-                forecastData[i].date = new Date(response.locations["Urbino,PU,61029"].values[i].datetimeStr);
+                forecastData[i].date = new Date(response.locations["Urbino,PU,61029"].values[i].datetime);
                 forecastData[i].weather = response.locations["Urbino,PU,61029"].values[i].conditions;
                 forecastData[i].temperature = response.locations["Urbino,PU,61029"].values[i].temp;
                 forecastData[i].humidity = response.locations["Urbino,PU,61029"].values[i].humidity;
