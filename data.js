@@ -68,8 +68,8 @@ async function updateForecastData() {
 async function updateHistoryData(selectedDate) {
     for(var i = 0; i < 24; i++) {
         fetch(new URL(`http://10.25.0.14:3000/misurazioni?
-            data_ora=gte.${selectedDate.toISOString().split('T')[0]}${String(i).padStart(2, '0')}:00:00&
-            data_ora=lt.${selectedDate.toISOString().split('T')[0]}${(i + 1 < 24)? String(i + 1).padStart(2, '0'): "00"}:00:00`
+            data_ora=gte.${selectedDate.toISOString().split('T')[0]}T${String(i).padStart(2, '0')}:00:00&
+            data_ora=lt.${selectedDate.toISOString().split('T')[0]}T${(i + 1 < 24)? String(i + 1).padStart(2, '0'): "00"}:00:00`
         )).then(function(response) {
                 if(!response.ok) throw new Error();
                 return response.json();
