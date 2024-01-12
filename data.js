@@ -75,14 +75,21 @@ async function updateHistoryData(selectedDate) {
                 })
                 .then(function (response) {
                     var temperature = 0;
+                    var temperatureCount = 0;
                     var humidity = 0;
-                    for (measurement of response) {
+                    var humidityCount = 0;
+                    for(measurement of response) {
                         console.log(measurement.valore);
-                        if (measurement.tipo == "TEMPERATURA") temperature += measurement.valore;
-                        else if (measurement.tipo == "UMIDITA") humidity += measurement.valore; // corretto il tipo di misurazione dell'umidità
+                        if(measurement.tipo == "TEMPERATURA") {
+                            temperature += measurement.valore;
+                            temperatureCount++;
+                        } else if(measurement.tipo == "UMIDITA") {
+                            humidity += measurement.valore;
+                            humidityratureCount++;
+                        }
                     }
-                    historyData[index].temperature = temperature / 6;
-                    historyData[index].humidity = humidity / 6;
+                    historyData[index].temperature = temperature / temperatureCount;
+                    historyData[index].humidity = humidity / humidityCount;
                 })
                 .catch(function (error) {
                     console.error(error);
