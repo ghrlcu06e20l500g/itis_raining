@@ -94,22 +94,35 @@ body:not(body *) {
                     flex: 1;
                     display: flex;
                     flex-direction: row;
+                    overflow: hidden;
                     
-                    padding: 0px 10px 0px 10px;
+                    padding: 10px 10px 10px 10px;
+                    margin: 5px 5px 5px 5px;
+                    border-radius: 5px;
                     align-items: center;
                     
                     background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
+                    border: 2px solid black;
                 }
                     #days > div.current {
                         font-weight: bolder;
                         font-style: italic;
-                        text-decoration: underline;
+                        border: 3px solid var(--logoyellow);
                     }
                     #days > div > div {
                         flex: 1;
                         padding: 0px 10px 0px 10px;
+                    }
+                    #days > div > img {
+                        width: 30px;
+                        height: 30px;
+                        margin: 0px 5px 0px 5px;
+                        image-rendering: pixelated;
+                    }
+                    #weekday {
+                        font-size: 150%;
                     }
         /* history */
             #date {

@@ -31,11 +31,15 @@ async function showForecast() {
                 style="background-image: url('images/backgrounds/${day.weather.split(",")[0].split(" ")[0]}.png');"
                 class="${(day.date.toISOString().split('T')[0] == new Date().toISOString().split('T')[0])? 'current' : ''}"
             >
-                <div weekday>${weekdays[day.date.getDay()]}</div>
-                <div date>${day.date.toISOString().split('T')[0]}</div>
-                <div weather>${day.weather.split(",")[0]}</div>
-                <div temperature>${temp}</div>
-                <div humidity>${day.humidity.toFixed(1)}%H</div>
+                <img src="images/icons/${day.weather.split(",")[0].split(" ")[0]}.png">
+                <div id="day_date_data">
+                    <div id="weekday">${weekdays[day.date.getDay()]}</div>
+                    <div id="date">${day.date.toISOString().split('T')[0]}</div>
+                </div>
+                <div id="day_values_data">
+                    <div id="temperature">${temp}</div>
+                    <div id="humidity">${day.humidity.toFixed(1)}%H</div>
+                </div>
             </div>
         `;
     }
