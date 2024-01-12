@@ -44,7 +44,6 @@ var historyData = [
 ];
 
 const forecastUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61029&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
-const historyUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
 
 async function updateForecastData() {
     return fetch(forecastUrl)
@@ -67,27 +66,29 @@ async function updateForecastData() {
         });
 }
 async function updateHistoryData(selectedDate) {
-    return fetch(historyUrl)
-        .then(function(response) {
-            if(!response.ok) throw new Error();
-            return response.json();
-        })
-        .then(function(response) {
-            var i = 0;
-            do {
-                var currentResponse = response.pop();
-                var dataDay = currentResponse["data_ora"].slice(8, 10);
-                
-                historyData[i].date = currentResponse["data_ora"];
-                if(currentResponse.tipo == "UMIDITA") historyData[i].humidity = currentResponse['valore'];
-                else if(currentResponse.tipo == "TEMPERATURA") historyData[i].temperature = currentResponse['valore'];
-                i++;
-            } while(dataDay == selectedDate.toString().slice(8, 10));
-        })
-        .catch(function(error) {
-            console.error(error);
-            $("#error_data").html(error.toString());
-            $("#error").show();
-        });
+    for(var i = 0; i < 24; i++) {
+        fetch(new URL(`http://10.25.0.14:3000/misurazioni?
+            data_ora=gte.${selectedDate.toISOString().split('T')[0]}${String(i).padStart(2, '0')}:00:00&
+            data_ora=lt.${nextDate.toISOString().split('T')[0]}${(i + 1 < 24)? String(i + 1).padStart(2, '0'): "00"}:00:00`
+        )).then(function(response) {
+                if(!response.ok) throw new Error();
+                return response.json();
+            })
+            .then(function(response) {
+                var temperature = 0;
+                var humidity = 0;
+                for(measurement of response) {
+                    if(measurement.tipo == "TEMPERATURA") temperature += measurement.valore;
+                    else if(measurement.tipo == "TEMPERATURA") humidity += measurement.valore;
+                }
+                historyData[i].temperature = temperature / 6;
+                historyData[i].humidity = humidity / 6;
+            })
+            .catch(function(error) {
+                console.error(error);
+                $("#error_data").html(error.toString());
+                $("#error").show();
+            });
+    }
 }
 
