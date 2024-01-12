@@ -38,8 +38,8 @@ async function showForecast() {
                 <div weekday>${weekdays[day.date.getDay()]}</div>
                 <div date>${day.date.toISOString().split('T')[0]}</div>
                 <div weather>${day.weather.split(",")[0]}</div>
-                <div temperature>${temp}</div>
-                <div humidity>${day.humidity}%H</div>
+                <div temperature>${temp.toFixed(1)}</div>
+                <div humidity>${day.humidity.toFixed(1)}%H</div>
             </div>
         `;
     }
