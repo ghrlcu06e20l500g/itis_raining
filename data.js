@@ -69,7 +69,7 @@ async function updateHistoryData(selectedDate) {
     let promises = [];
     for(var i = 0; i < 24; i++) {
         (function (index) {
-            promises.push(fetch(new URL(`http://10.25.0.14:3000/misurazioni?data_ora=gte.${selectedDate.toISOString().split('T')[0]}T${String(index).padStart(2, '0')}:00:00&data_ora=lt.${selectedDate.toISOString().split('T')[0]}T${(index + 1 < 24) ? String(index + 1).padStart(2, '0') + ":00:00": "23:59:59"}`))
+            promises.push(fetch(new URL(`http://portale.itisurbino.it:3000/misurazioni?data_ora=gte.${selectedDate.toISOString().split('T')[0]}T${String(index).padStart(2, '0')}:00:00&data_ora=lt.${selectedDate.toISOString().split('T')[0]}T${(index + 1 < 24) ? String(index + 1).padStart(2, '0') + ":00:00": "23:59:59"}`))
                 .then(function (response) {
                     if (!response.ok) throw new Error();
                     return response.json();
