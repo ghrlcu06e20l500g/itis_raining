@@ -67,27 +67,29 @@ async function updateForecastData() {
 }
 async function updateHistoryData(selectedDate) {
     for(var i = 0; i < 24; i++) {
-        fetch(new URL(`http://10.25.0.14:3000/misurazioni?data_ora=gte.${selectedDate.toISOString().split('T')[0]}T${String(i).padStart(2, '0')}:00:00&data_ora=lt.${selectedDate.toISOString().split('T')[0]}T${(i + 1 < 24)? String(i + 1).padStart(2, '0'): "00"}:00:00`)).then(function(response) {
-                if(!response.ok) throw new Error();
-                return response.json();
-            })
-            .then(function(response) {
-                var temperature = 0;
-                var humidity = 0;
-                historyData[i].time = new Date(`${selectedDate.toISOString().split('T')[0]}T${String(i).padStart(2, '0')}:00:00`);
-                for(measurement of response) {
-                    console.log(measurement.valore);
-                    if(measurement.tipo == "TEMPERATURA") temperature += measurement.valore;
-                    else if(measurement.tipo == "UMIDITA") humidity += measurement.valore;
-                }
-                historyData[i].temperature = temperature / 6;
-                historyData[i].humidity = humidity / 6;
-            })
-            .catch(function(error) {
-                console.error(error);
-                $("#error_data").html(error.toString());
-                $("#error").show();
-            });
+        (function (index) {
+            fetch(new URL(`http://10.25.0.14:3000/misurazioni?data_ora=gte.${selectedDate.toISOString().split('T')[0]}T${String(index).padStart(2, '0')}:00:00&data_ora=lt.${selectedDate.toISOString().split('T')[0]}T${(index + 1 < 24) ? String(index + 1).padStart(2, '0') : "00"}:00:00`))
+                .then(function (response) {
+                    if (!response.ok) throw new Error();
+                    return response.json();
+                })
+                .then(function (response) {
+                    var temperature = 0;
+                    var humidity = 0;
+                    for (measurement of response) {
+                        console.log(measurement.valore);
+                        if (measurement.tipo == "TEMPERATURA") temperature += measurement.valore;
+                        else if (measurement.tipo == "UMIDITA") humidity += measurement.valore; // corretto il tipo di misurazione dell'umidità
+                    }
+                    historyData[index].temperature = temperature / 6;
+                    historyData[index].humidity = humidity / 6;
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    $("#error_data").html(error.toString());
+                    $("#error").show();
+                });
+        })(i);
     }
 }
 
