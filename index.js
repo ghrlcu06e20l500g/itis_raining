@@ -56,7 +56,7 @@ async function showHistory() {
     $("#loading_screen").show();
 
     await updateHistoryData(selectedDate);
-    
+    setTimeout(1000);
     $("#nav_forecast").removeClass("selected");
     $("#nav_history").addClass("selected");
 
@@ -138,8 +138,8 @@ async function showHistory() {
 }
 
 $("#nav_forecast").click(() => showForecast());
-$("#nav_history").click(async () => {
-    await showHistory();
+$("#nav_history").click(() => {
+    showHistory();
 });
 
 $("#settings_button").click(() => $("#settings").css("display", "flex"));
