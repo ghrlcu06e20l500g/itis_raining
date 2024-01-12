@@ -137,9 +137,9 @@ async function showHistory() {
 }
 
 $("#nav_forecast").click(() => showForecast());
-$("#nav_history").click(() => {
-    showHistory();
-    showHistory();
+$("#nav_history").click(async () => {
+    await showHistory();
+    await showHistory();
 });
 
 $("#settings_button").click(() => $("#settings").css("display", "flex"));
