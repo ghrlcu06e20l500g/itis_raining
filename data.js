@@ -43,9 +43,6 @@ var historyData = [
     { time: new Date(), temperature: 30, humidity: 50 }
 ];
 
-var corsAttr = new EnableCorsAttribute("*", "*", "*");
-config.EnableCors(corsAttr);
-
 const forecastUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61029&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
 const historyUrl = new URL("http://10.25.0.14:3000/misurazioni?data_ora");
 
