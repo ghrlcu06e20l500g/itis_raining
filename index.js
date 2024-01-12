@@ -11,7 +11,8 @@ async function showForecast() {
 
     $("#nav_history").removeClass("selected");
     $("#nav_forecast").addClass("selected");
-
+    // DEBUG
+    console.log(weekdays[new Date().getDay])
     var days = "";
     for(day of forecastData) {
         var temp = "";
