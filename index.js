@@ -58,9 +58,11 @@ async function showHistory() {
     $("#nav_forecast").removeClass("selected");
     $("#nav_history").addClass("selected");
 
+    var yesteday = new Date();
+    yesteday.setDate(yesteday.getDate() - 1);
     $("main").html(/* html */ `
         <input type="date" id="date" class="interactable" min="2023-01-01" title="Click to select a date"
-            max="${yesterday.toISOString().split('T')[0]}" 
+            max="${yesteday.toISOString().split('T')[0]}" 
             value="${selectedDate.toISOString().split('T')[0]}" 
         >
         <div id="charts">
