@@ -90,6 +90,8 @@ async function updateHistoryData(selectedDate) {
                     }
                     historyData[index].temperature = temperature / temperatureCount;
                     historyData[index].humidity = humidity / humidityCount;
+                    console.warn(temperature / temperatureCount);
+                    console.warn(humidity / humidityCount);
                 })
                 .catch(function (error) {
                     console.error(error);
@@ -98,5 +100,6 @@ async function updateHistoryData(selectedDate) {
                 });
         })(i);
     }
+    console.clear();
 }
 
