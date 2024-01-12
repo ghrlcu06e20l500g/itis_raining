@@ -211,7 +211,10 @@ body:not(body *) {
             width: 100% !important;
             height: 100% !important;
         }
+        header {
+            padding: 5px 0px 5px 0px;
+        }
         h1 {
-            font-size: 150%;
+            font-size: 175%;
         }
 }
