@@ -212,6 +212,6 @@ body:not(body *) {
             height: 100% !important;
         }
         h1 {
-            font-size: 90%;
+            font-size: 150%;
         }
 }
