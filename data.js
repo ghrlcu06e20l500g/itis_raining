@@ -95,6 +95,43 @@ async function updateHistoryData(selectedDate) {
                     console.warn(humidity / humidityCount);
                 })
                 .catch(function (error) {
+                    updateHistoryDataIntern(selectedDate);
+                }));
+        })(i);
+    }
+    return Promise.all(promises);
+}
+
+async function updateHistoryDataIntern(selectedDate) {
+    let promises = [];
+    for(var i = 0; i < 24; i++) {
+        (function (index) {
+            promises.push(fetch(new URL(`http://10.25.0.14:3000/misurazioni?data_ora=gte.${selectedDate.toISOString().split('T')[0]}T${String(index).padStart(2, '0')}:00:00&data_ora=lt.${selectedDate.toISOString().split('T')[0]}T${(index + 1 < 24) ? String(index + 1).padStart(2, '0') + ":00:00": "23:59:59"}`))
+                .then(function (response) {
+                    if (!response.ok) throw new Error();
+                    return response.json();
+                })
+                .then(function (response) {
+                    var temperature = 0;
+                    var temperatureCount = 0;
+                    var humidity = 0;
+                    var humidityCount = 0;
+                    for(measurement of response) {
+                        console.log(measurement.valore);
+                        if(measurement.tipo == "TEMPERATURA") {
+                            temperature += measurement.valore;
+                            temperatureCount++;
+                        } else if(measurement.tipo == "UMIDITA") {
+                            humidity += measurement.valore;
+                            humidityCount++;
+                        }
+                    }
+                    historyData[index].temperature = temperature / temperatureCount;
+                    historyData[index].humidity = humidity / humidityCount;
+                    console.warn(temperature / temperatureCount);
+                    console.warn(humidity / humidityCount);
+                })
+                .catch(function (error) {
                     console.error(error);
                     $("#error_data").html(error.toString());
                     $("#error").show();
