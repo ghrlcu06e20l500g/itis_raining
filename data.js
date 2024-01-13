@@ -43,7 +43,7 @@ var historyData = [
     { time: new Date(), temperature: 30, humidity: 50 }
 ];
 
-const forecastUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61029&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
+var forecastUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61029&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=EVPUPWJLED7AAULMJBMDVB3GJ");
 
 async function updateForecastData() {
     return fetch(forecastUrl)
@@ -60,11 +60,13 @@ async function updateForecastData() {
             }
         })
         .catch(function(error) {
-            console.error(error);
-            $("#error_data").html(error.toString());
-            $("#error").show();
+            forecastUrl = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=Urbino,PU,61029&aggregateHours=24&lang=it&unitGroup=metric&shortColumnNames=false&contentType=json&key=6MKH4MUZQ5NXM44B4CALXJJ6V");
+            updateForecastData();
         });
 }
+
+
+
 async function updateHistoryData(selectedDate) {
     let promises = [];
     for(var i = 0; i < 24; i++) {
