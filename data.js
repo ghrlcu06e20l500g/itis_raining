@@ -98,7 +98,6 @@ async function updateHistoryData(selectedDate) {
                 })
                 .catch(function (error) {
                     updateHistoryDataIntern(selectedDate);
-                    break;
                 }));
         })(i);
     }
