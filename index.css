@@ -79,7 +79,7 @@ body:not(body *) {
             }
     main {
         flex: 1;
-
+        color: white;
         display: flex;
         flex-direction: column;
     }
